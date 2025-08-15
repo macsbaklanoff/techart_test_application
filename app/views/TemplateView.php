@@ -18,6 +18,5 @@
   $home_view = '/HomeView.php'; 
   include __DIR__ .$home_view; 
   ?>
-  <footer>галактический вестник</footer>
 </body>
 </html>
