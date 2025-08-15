@@ -1,0 +1,18 @@
+body, html {
+  width: 100dvw;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  position: relative;
+  grid-auto-rows: min-content;
+  column-gap: 16px;
+}
+.header {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1/-1;
+  isolation: isolate;
+}
+.header_info {
+  grid-column: 2;
+}
