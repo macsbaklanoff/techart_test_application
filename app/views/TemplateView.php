@@ -10,8 +10,8 @@
 <body>
   <header class="header">
     <div class="header_info">
-      <img src = "/uploads/icons/logo 1.svg">
-      <p>ГАЛАКТИЧЕСКИЙ ВЕСТНИК</p>
+      <img class ="header_info_icon" src = "/uploads/icons/logo 1.svg">
+      <p class="header_info_headline">ГАЛАКТИЧЕСКИЙ </br> ВЕСТНИК</p>
     </div>
   </header>
   <?php
