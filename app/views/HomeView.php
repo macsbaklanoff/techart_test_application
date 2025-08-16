@@ -26,15 +26,18 @@
           <p class="news_list-news_item-news_announce"><?= htmlspecialchars($news['announce'])?></p>
           <button class="news_list-news_item-news_more">
             Подробнее 
-            <div class="more-arrow"></div>
+            <img class="more-arrow" src="/uploads/icons/arrow-more.png">
           </button>
         </div>
         <?php endforeach; ?>
     </div>
     <div class="news_pagination">
-      <button class="news_pagination_item">1</button>
+      <button class="news_pagination_item current">1</button>
       <button class="news_pagination_item">2</button>
       <button class="news_pagination_item">3</button>
+      <button class="news_pagination_next">
+        <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
+      </button>
     </div>
   </div>
 </body>

@@ -137,55 +137,38 @@ body, html {
 .news_list-news_item-news_more {
   display: grid;
   grid-template-columns: min-content min-content;
+  column-gap: 10px;
   align-items: center;
   justify-content: center;
   margin: 0;
   width: 214px;
   height: 54px;
   background-color: #FFF;
-  color: #9B407A;
+  color: #841844;
   border: 2px #9B407A solid;
   font-family: 'OpenSans-SemiBold';
   font-size: 16px;
   text-transform: uppercase;
   border-radius: 50px;
 }
-/* .news_list-news_item-news_more:hover {
-  color: #FFF;
-  background-color: #841844;
-} */
-.more-arrow {
-  width: 15px;
-  height: 15px;
-  border: 2px solid #9B407A;
-  border-left: 0;
-  border-top: 0;
-  transform: rotate(-45deg);
-}
+
 .news_list-news_item-news:hover {
   cursor: pointer;
 }
 .news_list-news_item-news:hover .news_list-news_item-news_more {
   background-color: #841844;
   color: #FFF;
-  transition: 500ms;
+  transition: 250ms;
   cursor: pointer;
-}
-.news_list-news_item-news:hover .more-arrow {
-  width: 15px;
-  height: 15px;
-  border: 2px solid #FFF;
-  border-left: 0;
-  border-top: 0;
-  transform: rotate(-45deg);
-  transition: 500ms;
 }
 .news_list-news_item-news:hover .news_list-news_item-news_title {
   color: #841844;
-  transition: 500ms;
+  transition: 250ms;
 }
-
-
+.news_list-news_item-news:hover .more-arrow {
+  content: url('/uploads/icons/arrow-more-hover.png');
+  transition: 250ms;
+}
 .news_pagination {
   margin: 0px;
   margin-top: 82px;
@@ -197,7 +180,40 @@ body, html {
   background-color: #FFF;
   width: 56px;
   height: 54px;
-  border: 2px solid #9B407A;
-  color: #9B407A;
+  border: 2px solid #841844;
+  color: #841844;
   border-radius: 50px;
+
+  font-family: 'OpenSans-SemiBold';
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.news_pagination_item:hover {
+  cursor: pointer;
+  background-color: #841844;
+  color: #FFF;
+  transition: 250ms;
+}
+.news_pagination_next {
+  display: grid;
+  background-color: #FFF;
+  width: 106px;
+  height: 54px;
+  border: 2px solid #841844;
+  color: #841844;
+  border-radius: 50px;
+  place-items: center;
+}
+.news_pagination_next:hover {
+  cursor: pointer;
+  background-color: #841844;
+  transition: 250ms;
+}
+.news_pagination_next:hover .arrow-next-page {
+  content: url('/uploads/icons/arrow-next-page-hover.png');
+  transition: 250ms;
+}
+.current {
+  background-color: #841844;
+  color: #FFF;
 }
