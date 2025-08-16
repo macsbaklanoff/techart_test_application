@@ -44,11 +44,23 @@
 </body>
 <script>
   function testFunc(nextPage) {
-    console.log(`${nextPage}`);
-    fetch(`/home?page=${nextPage}`).then(response => {
-      response.text();
-      console.log(response);
-    });
+    let newUrl;
+    if (nextPage == undefined) {
+      const currentPage = window.location.href[window.location.href.toString().length - 1]
+      newUrl = window.location.href.substring(0, window.location.href.length - 1) + (Number(currentPage) + 1).toString();
+      request(newUrl)
+      return;
+    }
+    newUrl = `/home?page=${nextPage}`;
+    request(newUrl)
+  }
+  function request(newUrl) {
+    history.pushState(null, null, newUrl);
+    fetch(newUrl)
+        .then(response => response.text())
+        .then(html => {
+            document.body.innerHTML = html;
+        })
   }
 </script>
 </html>

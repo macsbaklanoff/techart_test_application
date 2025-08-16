@@ -12,12 +12,13 @@ class HomeController {
   public $last_news;
 
   public function index(): void {
-    $this->current_page = $_GET['page'];
-
+    
+    $this->paginationData();
+    var_dump($this->offset);
+    var_dump((int)$_GET["page"]);
     $news_model = new NewsModel();
     $news_list = $news_model->getAllNews($this->count_items_page, $this->offset);
     $last_news = $news_model->getLastNews();
-
     $last_news['announce'] = substr($last_news['announce'],3, -4);
     $last_news['content'] = substr($last_news['content'],3, -4);
 
@@ -27,11 +28,15 @@ class HomeController {
       $news['date'] = str_replace('-', '.',explode(' ', $news['date'])[0]);
     }
     unset($news); 
-
-    $news_list = array_slice($news_list, 0, 4);
     require_once __DIR__ . '/../views/TemplateView.php';
     }
   public function redirectToHome() {
     header("Location: /home?page={$this->current_page}");
   }
+  private function paginationData() {
+    $this->current_page = (int)$_GET["page"];
+    if ($this->current_page == 1) return;
+    $this->offset = $this->current_page * $this->count_items_page - $this->count_items_page;
+  }
+
 }
