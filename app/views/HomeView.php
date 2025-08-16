@@ -27,18 +27,28 @@
           <button class="news_list-news_item-news_more">
             Подробнее 
             <img class="more-arrow" src="/uploads/icons/arrow-more.png">
-          </button>
+          </button> 
         </div>
         <?php endforeach; ?>
     </div>
     <div class="news_pagination">
-      <button class="news_pagination_item current">1</button>
-      <button class="news_pagination_item">2</button>
-      <button class="news_pagination_item">3</button>
-      <button class="news_pagination_next">
+      <button class="news_pagination_item current" onclick="testFunc(1)">1</button>
+      <button class="news_pagination_item" onclick="testFunc(2)">2</button>
+      <button class="news_pagination_item" onclick="testFunc(3)">3</button>
+      <p><?= htmlspecialchars($this->current_page) ?></p>
+      <button class="news_pagination_next" onclick="testFunc()">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
   </div>
 </body>
+<script>
+  function testFunc(nextPage) {
+    console.log(`${nextPage}`);
+    fetch(`/home?page=${nextPage}`).then(response => {
+      response.text();
+      console.log(response);
+    });
+  }
+</script>
 </html>

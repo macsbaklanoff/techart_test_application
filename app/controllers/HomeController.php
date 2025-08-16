@@ -5,12 +5,15 @@ require_once 'app/models/NewsModel.php';
 class HomeController {
 
   public $news_list;
-  public $current_page = 0;
+
+  public $current_page = 1;
   public $count_items_page = 4;
   public $offset = 0;
   public $last_news;
 
   public function index(): void {
+    $this->current_page = $_GET['page'];
+
     $news_model = new NewsModel();
     $news_list = $news_model->getAllNews($this->count_items_page, $this->offset);
     $last_news = $news_model->getLastNews();
@@ -28,4 +31,7 @@ class HomeController {
     $news_list = array_slice($news_list, 0, 4);
     require_once __DIR__ . '/../views/TemplateView.php';
     }
+  public function redirectToHome() {
+    header("Location: /home?page={$this->current_page}");
+  }
 }
