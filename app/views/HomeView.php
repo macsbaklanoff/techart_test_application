@@ -66,10 +66,19 @@
   }
   function goToPageNews(id) {
     console.log(id)
-    fetch(`/news?id=${id}`).then(response => response.text())
-    .then(html => {
-      
-    })
+    const newUrl = `/news?id=${id}`;
+    fetch(newUrl, {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        }).then(response => {
+            return response.json()
+        }).then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.html, 'text/html');
+            const newsDetail = doc.querySelector('.main_content');
+            const currentMainContent = document.querySelector('.main_content')
+            currentMainContent.innerHTML = newsDetail.innerHTML
+            history.pushState(null, null, newUrl);
+        })
   }
 </script>
 </html>

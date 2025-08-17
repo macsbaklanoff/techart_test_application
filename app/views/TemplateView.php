@@ -14,7 +14,7 @@
       <p class="header_info_headline">ГАЛАКТИЧЕСКИЙ </br> ВЕСТНИК</p>
     </div>
   </header>
-  <div class="main-content">
+  <div class="main_content">
     <?php
       $home_view = '/HomeView.php'; 
       include __DIR__ .$home_view; 
