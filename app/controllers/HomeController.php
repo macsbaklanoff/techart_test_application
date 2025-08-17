@@ -19,7 +19,6 @@ class HomeController {
     $news_model = new NewsModel();
 
     $total_news = $news_model->getCountNews();
-    var_dump( ($total_news) );
 
     $news_list = $news_model->getAllNews($this->count_items_page, $this->offset);
     $last_news = $news_model->getLastNews();

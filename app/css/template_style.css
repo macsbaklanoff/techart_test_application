@@ -220,3 +220,22 @@ body, html {
   background-color: #841844;
   color: #FFF;
 }
+.footer {
+  display: grid;
+  margin-top: 83px;
+  grid-column: 2/-2;
+}
+.footer-line {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 2/-2;
+  height: 1px;
+  background-color: #6C6E7B;
+}
+.footer-info {
+  margin: 0;
+  padding-block: 63px;
+  font-family: 'OpenSans-Regular';
+  font-size: 20px;
+  color: #000;
+}
