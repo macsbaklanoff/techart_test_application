@@ -204,6 +204,9 @@ body, html {
   border-radius: 50px;
   place-items: center;
 }
+.none-news {
+  display: none;
+}
 .news_pagination_next:hover {
   cursor: pointer;
   background-color: #841844;

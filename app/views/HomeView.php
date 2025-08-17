@@ -32,11 +32,12 @@
         <?php endforeach; ?>
     </div>
     <div class="news_pagination">
-      <button class="news_pagination_item current" onclick="testFunc(1)">1</button>
+      <button class="news_pagination_item" onclick="testFunc(1)">1</button>
       <button class="news_pagination_item" onclick="testFunc(2)">2</button>
-      <button class="news_pagination_item" onclick="testFunc(3)">3</button>
-      <p><?= htmlspecialchars($this->current_page) ?></p>
-      <button class="news_pagination_next" onclick="testFunc()">
+      <button class="news_pagination_item" onclick="testFunc(3)">
+        <?=$this->current_page < 3 ? 3 :htmlspecialchars($this->current_page)?>
+      </button>
+      <button class="<?= ($this->current_page * $this->count_items_page) >= $total_news ? 'none-news' : 'news_pagination_next' ?>"  onclick="testFunc(<?=$this->current_page + 1?>)">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
@@ -45,21 +46,19 @@
 <script>
   function testFunc(nextPage) {
     let newUrl;
-    if (nextPage == undefined) {
-      const currentPage = window.location.href[window.location.href.toString().length - 1]
-      newUrl = window.location.href.substring(0, window.location.href.length - 1) + (Number(currentPage) + 1).toString();
-      request(newUrl)
-      return;
-    }
     newUrl = `/home?page=${nextPage}`;
-    request(newUrl)
+    request(newUrl, nextPage)
   }
-  function request(newUrl) {
+
+  function request(newUrl, nextPage) {
     history.pushState(null, null, newUrl);
     fetch(newUrl)
         .then(response => response.text())
-        .then(html => {
-            document.body.innerHTML = html;
+        .then(data => {
+            document.body.innerHTML = data;
+            let pages = document.querySelectorAll('.news_pagination_item')
+            if (nextPage - 1 < 3) pages[nextPage - 1].classList.add('current');
+            else pages[2].classList.add('current');
         })
   }
 </script>

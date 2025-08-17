@@ -17,4 +17,9 @@ class NewsModel extends Model {
     $data = $this->db_context->query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
     return $data->fetch(PDO::FETCH_ASSOC);
   }
+
+  public function getCountNews() {
+    $data = $this->db_context->query("SELECT COUNT(*) as count FROM news");
+    return (int)$data->fetch(PDO::FETCH_ASSOC)['count'];
+  }
 }

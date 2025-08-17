@@ -11,12 +11,16 @@ class HomeController {
   public $offset = 0;
   public $last_news;
 
+  public $total_news;
+
   public function index(): void {
     
     $this->paginationData();
-    var_dump($this->offset);
-    var_dump((int)$_GET["page"]);
     $news_model = new NewsModel();
+
+    $total_news = $news_model->getCountNews();
+    var_dump( ($total_news) );
+
     $news_list = $news_model->getAllNews($this->count_items_page, $this->offset);
     $last_news = $news_model->getLastNews();
     $last_news['announce'] = substr($last_news['announce'],3, -4);
