@@ -18,9 +18,11 @@
     <div class="news_header">
       <h4 class="news_header_headline">Новости</h4>
     </div>
+    <!-- onclick="window.location.href='/news?id=<?= $news['id'] ?>' -->
+     <!-- onclick="goToPageNews(<?=$news['id']?>)" -->
     <div class="news_list-news">
       <?php foreach ($news_list as $news): ?>
-        <div class="news_list-news_item-news">
+        <div class="news_list-news_item-news" onclick="goToPageNews(<?=$news['id']?>)">
           <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date'])?></p>
           <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title'])?></h5>
           <p class="news_list-news_item-news_announce"><?= htmlspecialchars($news['announce'])?></p>
@@ -42,6 +44,7 @@
       </button>
     </div>
   </div>
+
 </body>
 <script>
   function testFunc(nextPage) {
@@ -60,6 +63,13 @@
             if (nextPage - 1 < 3) pages[nextPage - 1].classList.add('current');
             else pages[2].classList.add('current');
         })
+  }
+  function goToPageNews(id) {
+    console.log(id)
+    fetch(`/news?id=${id}`).then(response => response.text())
+    .then(html => {
+      
+    })
   }
 </script>
 </html>

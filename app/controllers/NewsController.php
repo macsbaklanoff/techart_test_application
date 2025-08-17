@@ -9,6 +9,8 @@ class NewsController {
     $model = new NewsModel();
 
     $news = $model->getNewsById((int)$id);
+    
+
     require_once __DIR__ . '/../views/NewsView.php';
   }
 }

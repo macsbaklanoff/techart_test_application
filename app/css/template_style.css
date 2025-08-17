@@ -42,7 +42,11 @@ body, html {
   letter-spacing: 3.5px;
   color: #2C145E;
 }
-
+.main-content {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1/-1;
+}
 .main_news {
   display: grid;
   grid-template-columns: subgrid;
