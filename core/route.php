@@ -5,17 +5,7 @@ require_once 'app/controllers/NewsController.php';
 
 class Route
 {
-
   protected array $routes = [];
-
-  protected array $routes_params = [];
-
-  public Request $request;
-  public Response $response;
-  public function __construct($request, $response) {
-    $this->request = $request;
-    $this->response = $response;
-  }
 
   public function add($method, $path, $handler){
     $this->routes[] = [

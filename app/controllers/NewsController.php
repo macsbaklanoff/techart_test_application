@@ -24,7 +24,6 @@ class NewsController {
       ['title' => $news['title'], 'url' => 'home/news?id=' . (string)$news['id']]
     ];
     $news['announce'] = substr($news['announce'],3, -4);
-    // $news['content'] = substr($news['content'],3, -4);
     preg_match_all('/<p[^>]*>.*?<\/p>/', $news['content'],$matches);
     $paragraphs = $matches[0];
     
