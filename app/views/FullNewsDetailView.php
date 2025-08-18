@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Techart.Web</title>
   <link rel="stylesheet" href="/app/css/template_style.css">  
+  <title>Document</title>
 </head>
-
 <body>
-    <?php 
+  <?php 
       include __DIR__ .'/HeaderView.php'; 
     ?>
   <div class="main_content">
     <?php 
-      include __DIR__ .'/HomeView.php'; 
+      include __DIR__ .'/NewsView.php'; 
     ?>
   </div>
   <?php 

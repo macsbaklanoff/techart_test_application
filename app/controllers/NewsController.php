@@ -34,7 +34,7 @@ class NewsController {
         echo json_encode(['html' => $html]);
       exit;
     }
-    require_once __DIR__ . '/../views/TemplateView.php';
+    require_once __DIR__ . '/../views/FullNewsDetailView.php';
   }
 
   private function isAjaxRequest(): bool {
