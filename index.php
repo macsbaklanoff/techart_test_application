@@ -12,7 +12,7 @@ $application = new Application();
 
 $application->route->add('GET', '/', [HomeController::class, 'redirectToHome']);
 $application->route->add('GET', '/home', [HomeController::class, 'index']);
-$application->route->add('GET', '/news', [NewsController::class, 'show_news']);
+$application->route->add('GET', '/home/news', [NewsController::class, 'show_news']);
 
 $request_URI = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $request_method = $_SERVER['REQUEST_METHOD'];

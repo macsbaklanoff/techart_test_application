@@ -6,14 +6,18 @@ class NewsController {
 
   public $count_items_page = 4;
   public $total_news;
+
     public function show_news() {
     $id = $_GET["id"];
-
     $model = new NewsModel();
     $this->total_news = $model->getCountNews();
 
     $news = $model->getNewsById((int)$id);
 
+    $bread_crumbs = [
+      ['title' => 'Главная', 'url'=> '/home?page=1'],
+      ['title' => $news['title'], 'url' => 'home/news?id=' . (string)$news['id']]
+    ];
     $news['announce'] = substr($news['announce'],3, -4);
     // $news['content'] = substr($news['content'],3, -4);
     preg_match_all('/<p[^>]*>.*?<\/p>/', $news['content'],$matches);

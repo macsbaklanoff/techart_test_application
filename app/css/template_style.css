@@ -252,12 +252,24 @@ body, html {
   background-color: #6C6E7B;
 }
 .bread {
+  margin-top: 72px;
   grid-column: 2/-2;
 }
-
+.bread_item {
+  font-family: 'OpenSans-Regular';
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+}
+.bread_item_last {
+  font-family: 'OpenSans-Regular';
+  font-size: 16px;
+  color: #BBBBBB;
+}
 .detail_news {
   grid-column: 2 / -2;
   margin: 0;
+  margin-top: 21px;
 }
 .detail_news_headline {
   margin: 0;

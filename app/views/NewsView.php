@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="app/css/detail.css">
+  <link rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
   <div class="main_content">
     <div class="line_detail_news"></div>
     <div class="bread">
-      <p class="bread-info">Главная / Возвращение этнографа</p>
+      <?php 
+      $last_key = array_key_last($bread_crumbs);
+      foreach($bread_crumbs as $key => $bread_crumb):?>
+        <?php if ($key !== $last_key): ?>
+            <a href="<?= htmlspecialchars($bread_crumb['url']) ?>" class="bread_item">
+                <?= htmlspecialchars($bread_crumb['title']) ?>
+            </a> /
+        <?php else: ?>
+            <span class="bread_item_last"><?= htmlspecialchars($bread_crumb['title']) ?></span>
+        <?php endif; ?>
+    <?php endforeach; ?>
     </div>
     <div class="detail_news">
         <h1 class="detail_news_headline"><?= htmlspecialchars($news['title'])?></h1>

@@ -66,7 +66,7 @@
   }
   function goToPageNews(id) {
     console.log(id)
-    const newUrl = `/news?id=${id}`;
+    const newUrl = `/home/news?id=${id}`;
     fetch(newUrl, {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         }).then(response => {
