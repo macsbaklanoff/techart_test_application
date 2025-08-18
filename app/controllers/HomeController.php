@@ -14,11 +14,16 @@ class HomeController {
   public $total_news;
 
   public function index(): void {
-    
-    $this->paginationData();
     $news_model = new NewsModel();
-
     $total_news = $news_model->getCountNews();
+    $query_string = $_SERVER['QUERY_STRING'];
+    $param = explode('=', $query_string);
+    if (!is_numeric($param[1]) || $param[1] > ceil($total_news / $param[1]) + 1) {
+      require_once 'app/views/PageNotFound.php';
+      return;
+    }
+
+    $this->paginationData();
 
     $news_list = $news_model->getAllNews($this->count_items_page, $this->offset);
     $last_news = $news_model->getLastNews();

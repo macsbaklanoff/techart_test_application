@@ -11,6 +11,11 @@ class NewsController {
     $id = $_GET["id"];
     $model = new NewsModel();
     $this->total_news = $model->getCountNews();
+    
+    if ($id > $this->total_news || !is_numeric($id)) {
+      require_once 'app/views/PageNotFound.php';
+      return;
+    }
 
     $news = $model->getNewsById((int)$id);
 

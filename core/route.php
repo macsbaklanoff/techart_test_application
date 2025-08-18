@@ -40,7 +40,7 @@ class Route
       }
     }
     http_response_code(404);
-    echo 'Page not found 404';
+    require_once 'app/views/PageNotFound.php';
   }
 
 }
