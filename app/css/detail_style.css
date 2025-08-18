@@ -91,6 +91,7 @@
   align-items: center;
   justify-content: center;
   margin: 0;
+  margin-top: 40px;
   width: 283px;
   height: 54px;
   background-color: #FFF;
@@ -111,4 +112,8 @@
   content: url('/uploads/icons/arrow-back-page-hover.png');
   transition: 250ms;
 }
-
+@media (max-width: 1100px) {
+  .detail_news_info {
+    grid-template-columns: 1fr;
+  }
+}

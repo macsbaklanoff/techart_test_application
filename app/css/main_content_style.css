@@ -180,3 +180,14 @@
   background-color: #841844;
   color: #FFF;
 }
+@media (max-width: 720px) {
+  .news_list-news {
+    grid-template-columns: 1fr;
+  }
+  .main_news_description {
+    font-size: 16px;
+  }
+  .main_news_title {
+    font-size: 32px;
+  }
+}
