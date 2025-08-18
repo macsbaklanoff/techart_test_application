@@ -4,7 +4,7 @@ require_once 'core/model.php';
 
 class NewsModel extends Model {
   public function getAllNews($count_items_page, $offset): array {
-    $data = $this->db_context->query("SELECT * FROM news LIMIT $count_items_page OFFSET $offset");
+    $data = $this->db_context->query("SELECT * FROM news ORDER BY date DESC LIMIT $count_items_page OFFSET $offset");
     return $data->fetchAll(PDO::FETCH_ASSOC);
   }
   
