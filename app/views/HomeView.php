@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/app/css/main_content_style.css">
-  <title>Document</title>
+  <title>Techart.Web</title>
 </head>
 <body>
   <div class="main_news">
@@ -18,8 +18,6 @@
     <div class="news_header">
       <h4 class="news_header_headline">Новости</h4>
     </div>
-    <!-- onclick="window.location.href='/news?id=<?= $news['id'] ?>' -->
-     <!-- onclick="goToPageNews(<?=$news['id']?>)" -->
     <div class="news_list-news">
       <?php foreach ($news_list as $news): ?>
         <div class="news_list-news_item-news" onclick="goToPageNews(<?=$news['id']?>)">

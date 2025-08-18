@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/app/css/header_style.css">
   <link rel="stylesheet" href="/app/css/detail_style.css">
-  <title>Document</title>
+  <title>Techart.Web</title>
 </head>
 <body>
   <header class="header" onclick="window.location.href='/home?page=1'">
