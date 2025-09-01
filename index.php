@@ -16,7 +16,7 @@ function autoloader ($class_name) {
     // $namespaces_array = explode('\\', $class_name); // имя класса приходит с пространством имен
     // $class_name = $namespaces_array[count($namespaces_array) - 1]; //нашли имя класса
     $filename = $class_name . '.php';
-    var_dump($class_name . '.php');
+    var_dump($class_name . '.php');//
 
     if (file_exists($filename)) {
         require_once $filename;
