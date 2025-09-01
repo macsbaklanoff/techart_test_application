@@ -1,8 +1,8 @@
 <?php
 
-namespace NewsController;
+namespace App\Contollers\NewsController;
 
-use NewsModel\NewsModel;
+use App\Models\NewsModel;
 
 // require_once 'app/models/NewsModel.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Application;
+namespace App\Core\Application;
 
 // use Route\Route;
 // use Model\Model;

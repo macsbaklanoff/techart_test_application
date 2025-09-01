@@ -1,6 +1,6 @@
 <?php
 
-namespace NewsModel;
+namespace App\Models\NewsModel;
 
 use Model\Model;
 
