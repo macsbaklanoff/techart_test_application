@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/App/Css/MainContentStyle.css">
-  <link rel="stylesheet" href="/App/Css/DetailStyle.css">
+  <link rel="stylesheet" href="/Css/MainContentStyle.css">
+  <link rel="stylesheet" href="/Css/DetailStyle.css">
   <title>Techart.Web</title>
 </head>
 <body>
@@ -12,14 +12,14 @@
     <div class="line_detail_news"></div>
     <div class="bread">
       <?php 
-      $last_key = array_key_last($bread_crumbs);
-      foreach($bread_crumbs as $key => $bread_crumb):?>
+      $last_key = array_key_last($breadCrumbs);
+      foreach($breadCrumbs as $key => $breadCrumb):?>
         <?php if ($key !== $last_key): ?>
-            <a href="<?= htmlspecialchars($bread_crumb['url']) ?>" class="bread_item">
-                <?= htmlspecialchars($bread_crumb['title']) ?>
+            <a href="<?= htmlspecialchars($breadCrumb['url']) ?>" class="bread_item">
+                <?= htmlspecialchars($breadCrumb['title']) ?>
             </a> /
         <?php else: ?>
-            <span class="bread_item_last"><?= htmlspecialchars($bread_crumb['title']) ?></span>
+            <span class="bread_item_last"><?= htmlspecialchars($breadCrumb['title']) ?></span>
         <?php endif; ?>
     <?php endforeach; ?>
     </div>

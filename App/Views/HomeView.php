@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/App/Css/MainContentStyle.css">
+  <link rel="stylesheet" href="/Css/MainContentStyle.css">
   <title>Techart.Web</title>
 </head>
 <body>
   <div class="main_news">
-    <img class="main_news_image" src="/uploads/images/<?=htmlspecialchars($last_news['image'])?>">
+    <img class="main_news_image" src="/uploads/images/<?=htmlspecialchars($lastNews['image'])?>">
     <div class="main_news_info">
-      <h4 class="main_news_title"><?= htmlspecialchars($last_news['title'])?></h4>
-      <p class="main_news_description"><?= htmlspecialchars($last_news["announce"])?></p>
+      <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title'])?></h4>
+      <p class="main_news_description"><?= htmlspecialchars($lastNews["announce"])?></p>
     </div>
   </div>
   <div class="news">
@@ -19,7 +19,7 @@
       <h4 class="news_header_headline">Новости</h4>
     </div>
     <div class="news_list-news">
-      <?php foreach ($news_list as $news): ?>
+      <?php foreach ($newsList as $news): ?>
         <div class="news_list-news_item-news" onclick="goToPageNews(<?=$news['id']?>)">
           <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date'])?></p>
           <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title'])?></h5>
@@ -35,9 +35,9 @@
       <button class="news_pagination_item" onclick="testFunc(1)">1</button>
       <button class="news_pagination_item" onclick="testFunc(2)">2</button>
       <button class="news_pagination_item" onclick="testFunc(3)">
-        <?=$this->current_page < 3 ? 3 :htmlspecialchars($this->current_page)?>
+        <?=$this->currentPage < 3 ? 3 :htmlspecialchars($this->currentPage)?>
       </button>
-      <button class="<?= ($this->current_page * $this->count_items_page) >= $total_news ? 'none-news' : 'news_pagination_next' ?>"  onclick="testFunc(<?=$this->current_page + 1?>)">
+      <button class="<?= ($this->currentPage * $this->countItemsPage) >= $totalNews ? 'none-news' : 'news_pagination_next' ?>"  onclick="testFunc(<?=$this->currentPage + 1?>)">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
@@ -68,8 +68,10 @@
     fetch(newUrl, {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         }).then(response => {
+            console.log(response)
             return response.json()
         }).then(data => {
+            console.log(data);
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.html, 'text/html');
             const newsDetail = doc.querySelector('.main_content');

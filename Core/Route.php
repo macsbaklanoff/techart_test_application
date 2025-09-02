@@ -32,7 +32,7 @@ class Route
       }
     }
     http_response_code(404);
-    require_once 'app/views/PageNotFound.php';
+    require_once 'App/Views/PageNotFound.php';
   }
 
 }

@@ -6,22 +6,22 @@ use App\Models\NewsModel;
 
 class NewsController {
 
-  public $count_items_page = 4;
-  public $total_news;
+  public $countItemsPage = 4;
+  public $totalNews;
 
     public function showNews() {
     $id = $_GET["id"];
     $model = new NewsModel();
-    $this->total_news = $model->getCountNews();
+    $this->totalNews = $model->getCountNews();
     
-    if ($id > $this->total_news || !is_numeric($id)) {
+    if ($id > $this->totalNews || !is_numeric($id)) {
       require_once 'App/Views/PageNotFound.php';
       return;
     }
 
     $news = $model->getNewsById((int)$id);
 
-    $bread_crumbs = [
+    $breadCrumbs = [
       ['title' => 'Главная', 'url'=> '/home?page=1'],
       ['title' => $news['title'], 'url' => 'home/news?id=' . (string)$news['id']]
     ];

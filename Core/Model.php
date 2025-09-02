@@ -2,17 +2,17 @@
 
 namespace Core;
 
-class Model {
-  private $dsn = "mysql:host=localhost;dbname=newsdb;";
-  private $user = 'root';
-  private $pass = 'root';
+use Config;
 
-  protected $db_context;
+class Model {
+
+  protected $dbContext;
 
   public function __construct() {
+    $test = require 'Config/ConfigDataBase.php';
     try {
-    $this->db_context = new \PDO($this->dsn, $this->user, $this->pass);
-    $this->db_context->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    $this->dbContext = new \PDO("mysql:host={$test['host']};dbname={$test['dbname']};", $test['user'], $test['pass']);
+    $this->dbContext->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
       var_dump($e->errorInfo);
     }
