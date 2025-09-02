@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/app/css/page_not_found_style.css">
-  <link rel="stylesheet" href="/app/css/detail_style.css">
+  <link rel="stylesheet" href="/App/Css/PageNotFoundStyle.css">
+  <link rel="stylesheet" href="/App/Css/DetailStyle.css">
   <title>Document</title>
 </head>
 <body>

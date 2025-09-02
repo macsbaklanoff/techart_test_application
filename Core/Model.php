@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Model;
+namespace Core;
 
 class Model {
   private $dsn = "mysql:host=localhost;dbname=newsdb;";

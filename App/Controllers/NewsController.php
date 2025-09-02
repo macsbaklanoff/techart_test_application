@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Contollers\NewsController;
+namespace App\Controllers;
 
 use App\Models\NewsModel;
-
-// require_once 'app/models/NewsModel.php';
 
 class NewsController {
 
@@ -17,7 +15,7 @@ class NewsController {
     $this->total_news = $model->getCountNews();
     
     if ($id > $this->total_news || !is_numeric($id)) {
-      require_once 'app/views/PageNotFound.php';
+      require_once 'App/Views/PageNotFound.php';
       return;
     }
 
@@ -35,14 +33,14 @@ class NewsController {
 
     if ($this->isAjaxRequest()) {
         ob_start();
-        include __DIR__ . '/../views/NewsView.php';
+        include __DIR__ . '/../Views/NewsView.php';
         $html = ob_get_clean();
         
         header('Content-Type: application/json');
         echo json_encode(['html' => $html]);
       exit;
     }
-    require_once __DIR__ . '/../views/FullNewsDetailView.php';
+    require_once __DIR__ . '/../Views/FullNewsDetailView.php';
   }
 
   private function isAjaxRequest(): bool {

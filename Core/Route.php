@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Core\Route;
+namespace Core;
 
 use App\Controllers\NewsController;
 use App\Controllers\HomeController;
-
-// require_once 'app/controllers/HomeController.php';
-// require_once 'app/controllers/NewsController.php';
 
 class Route
 {

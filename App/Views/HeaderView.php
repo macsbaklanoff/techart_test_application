@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/app/css/header_style.css">
-  <link rel="stylesheet" href="/app/css/detail_style.css">
+  <link rel="stylesheet" href="/App/Css/HeaderStyle.css">
+  <link rel="stylesheet" href="/App/Css/DetailStyle.css">
   <title>Techart.Web</title>
 </head>
 <body>

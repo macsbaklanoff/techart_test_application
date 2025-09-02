@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Controllers\HomeController;
+namespace App\Controllers;
 
 use App\Models\NewsModel;
-
-// require_once 'app/models/NewsModel.php';
 
 class HomeController {
 
@@ -23,7 +21,7 @@ class HomeController {
     $query_string = $_SERVER['QUERY_STRING'];
     $param = explode('=', $query_string);
     if (!is_numeric($param[1]) || $param[1] > ceil($total_news / $param[1]) + 1) {
-      require_once 'app/views/PageNotFound.php';
+      require_once 'App/Views/PageNotFound.php';
       return;
     }
 
@@ -40,7 +38,7 @@ class HomeController {
       $news['date'] = str_replace('-', '.',explode(' ', $news['date'])[0]);
     }
     unset($news); 
-    require_once __DIR__ . '/../views/TemplateView.php';
+    require_once __DIR__ . '/../Views/TemplateView.php';
     }
   public function redirectToHome() {
     header("Location: /home?page={$this->current_page}");

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Application;
+namespace Core;
 
-// use Route\Route;
-// use Model\Model;
+use Core\Route;
+use Core\Model;
 
 class Application {
   protected string $uri;
