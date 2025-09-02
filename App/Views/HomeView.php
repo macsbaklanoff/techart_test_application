@@ -34,14 +34,14 @@
       <?php endforeach; ?>
     </div>
     <div class="news_pagination">
-      <button class="news_pagination_item" onclick="testFunc(1)">1</button>
-      <button class="news_pagination_item" onclick="testFunc(2)">2</button>
-      <button class="news_pagination_item" onclick="testFunc(3)">
+      <button class="news_pagination_item" onclick="paginationFunc(1)">1</button>
+      <button class="news_pagination_item" onclick="paginationFunc(2)">2</button>
+      <button class="news_pagination_item" onclick="paginationFunc(3)">
         <?= $this->currentPage < 3 ? 3 : htmlspecialchars($this->currentPage) ?>
       </button>
       <button
         class="<?= ($this->currentPage * $this->countItemsPage) >= $totalNews ? 'none-news' : 'news_pagination_next' ?>"
-        onclick="testFunc(<?= $this->currentPage + 1 ?>)">
+        onclick="paginationFunc(<?= $this->currentPage + 1 ?>)">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
@@ -49,7 +49,7 @@
 
 </body>
 <script>
-  function testFunc(nextPage) {
+  function paginationFunc(nextPage) {
     let newUrl;
     newUrl = `/home?page=${nextPage}`;
     request(newUrl, nextPage)
