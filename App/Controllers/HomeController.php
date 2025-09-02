@@ -39,10 +39,12 @@ class HomeController
     unset($news);
     require_once __DIR__ . '/../Views/TemplateView.php';
   }
+
   public function redirectToHome()
   {
     header("Location: /home?page={$this->currentPage}");
   }
+  
   private function paginationData()
   {
     $this->currentPage = (int) $_GET["page"];
