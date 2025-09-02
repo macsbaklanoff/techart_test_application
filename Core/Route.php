@@ -8,9 +8,8 @@ use App\Controllers\HomeController;
 class Route
 {
   protected array $routes = [];
-
   public function add($method, $path, $handler)
-  {
+  { 
     $this->routes[] = [
       'method' => $method,
       'path' => $path,

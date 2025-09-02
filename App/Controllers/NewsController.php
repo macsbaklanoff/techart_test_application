@@ -6,53 +6,52 @@ use App\Models\NewsModel;
 
 class NewsController
 {
-
+  public $newsList;
+  public $currentPage = 1;
   public $countItemsPage = 4;
+  public $offset = 0;
+  public $lastNews;
+
   public $totalNews;
 
-  public function showNews()
+  public function listNews(): void
   {
-    if (!isset($_GET["id"])) {
-      http_response_code(404);
-      return;
-    }
-    $id = $_GET["id"];
-    $model = new NewsModel();
-    $this->totalNews = $model->getCountNews();
+    require_once __DIR__ . '/../Views/TemplateView.php';
 
-    $queryString = $_SERVER['QUERY_STRING'];
-    $param = explode('=', $queryString);
+    //if ajax request ...;
 
-    if (!is_numeric($id) || count($param) < 2 || $id > $this->totalNews || $id < 1 || $param[0] != 'id') {
-      require_once 'App/Views/PageNotFound.php';
-      http_response_code(404);
-      return;
-    }
+    // $newsModel = new NewsModel();
+    // $totalNews = $newsModel->getCountNews();
+    // $queryString = $_SERVER['QUERY_STRING'];
+    // $param = explode('=', $queryString);
+    // if (count($param) < 2 || !is_numeric($param[1]) || (int) $param[1] < 1 || $param[1] > ceil($totalNews / $param[1]) + 1 || $param[0] != 'page') {
+    //   require_once 'App/Views/PageNotFound.php';
+    //   http_response_code(404);
+    //   return;
+    // }
 
-    $news = $model->getNewsById((int) $id);
+    // $this->paginationData();
 
-    $breadCrumbs = [
-      ['title' => 'Главная', 'url' => '/home?page=1'],
-      ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
-    ];
+    // $newsList = $newsModel->getAllNews($this->countItemsPage, $this->offset);
+    // $lastNews = $newsModel->getLastNews();
 
-    $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
-
-    if ($this->isAjaxRequest()) {
-      ob_start();
-      include __DIR__ . '/../Views/NewsView.php';
-      $html = ob_get_clean();
-
-      header('Content-Type: application/json');
-      echo json_encode(['html' => $html]);
-      exit;
-    }
-    require_once __DIR__ . '/../Views/FullNewsDetailView.php';
+    // foreach ($newsList as &$news) {
+    //   $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
+    // }
+    // unset($news);
+    // require_once __DIR__ . '/../Views/TemplateView.php';
   }
 
-  private function isAjaxRequest(): bool
+  public function redirectToHome()
   {
-    return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-      strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+    header("Location: /home?page={$this->currentPage}");
+  }
+  
+  private function paginationData()
+  {
+    $this->currentPage = (int) $_GET["page"];
+    if ($this->currentPage == 1)
+      return;
+    $this->offset = $this->currentPage * $this->countItemsPage - $this->countItemsPage;
   }
 }

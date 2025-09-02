@@ -5,46 +5,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/Css/MainContentStyle.css">
-  <link rel="stylesheet" href="/Css/DetailStyle.css">
   <title>Techart.Web</title>
 </head>
 
 <body>
-  <div class="main_content">
-    <div class="line_detail_news"></div>
-    <div class="bread">
-      <?php
-      $last_key = array_key_last($breadCrumbs);
-      foreach ($breadCrumbs as $key => $breadCrumb): ?>
-        <?php if ($key !== $last_key): ?>
-          <a href="<?= htmlspecialchars($breadCrumb['url']) ?>" class="bread_item">
-            <?= htmlspecialchars($breadCrumb['title']) ?>
-          </a> /
-        <?php else: ?>
-          <span class="bread_item_last"><?= htmlspecialchars($breadCrumb['title']) ?></span>
-        <?php endif; ?>
+  <div class="main_news">
+    <img class="main_news_image" src="/uploads/images/<?= htmlspecialchars($lastNews['image']) ?>">
+    <div class="main_news_info">
+      <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title']) ?></h4>
+      <?= str_replace('<p>', '<p class="main_news_description">', $lastNews['announce']) ?>
+    </div>
+  </div>
+  <div class="news">
+    <div class="news_header">
+      <h4 class="news_header_headline">Новости</h4>
+    </div>
+    <div class="news_list-news">
+      <?php foreach ($newsList as $news): ?>
+        <div class="news_list-news_item-news" onclick="goToPageNews(<?= $news['id'] ?>)">
+          <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
+          <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
+          <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
+          <button class="news_list-news_item-news_more">
+            Подробнее
+            <img class="more-arrow" src="/uploads/icons/arrow-more.png">
+          </button>
+        </div>
       <?php endforeach; ?>
     </div>
-    <div class="detail_news">
-      <h1 class="detail_news_headline"><?= htmlspecialchars($news['title']) ?></h1>
-      <p class="detail_news_date"><?= htmlspecialchars($news['date']) ?></p>
-      <div class="detail_news_info">
-        <div class="detail_news_info_text">
-           <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $news['announce']) ?>
-          <div class="detail_news_info_text_content">
-            <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $news['content']) ?>
-          </div>
-        </div>
-        <div class="detail_news_info_image">
-          <img src="/uploads/images/<?= htmlspecialchars($news['image']) ?>">
-        </div>
-      </div>
-      <button class="detail_news_back_page" onclick="window.location.href = `/home?page=1`">
-        <img class="arrow_back_page" src="/uploads/icons/arrow-back-page.png">
-        назад к новостям
+    <div class="news_pagination">
+      <button class="news_pagination_item" onclick="paginationFunc(1)">1</button>
+      <button class="news_pagination_item" onclick="paginationFunc(2)">2</button>
+      <button class="news_pagination_item" onclick="paginationFunc(3)">
+        <?= $this->currentPage < 3 ? 3 : htmlspecialchars($this->currentPage) ?>
+      </button>
+      <button
+        class="<?= ($this->currentPage * $this->countItemsPage) >= $totalNews ? 'none-news' : 'news_pagination_next' ?>"
+        onclick="paginationFunc(<?= $this->currentPage + 1 ?>)">
+        <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
   </div>
+
 </body>
+<script>
+  function paginationFunc(nextPage) {
+    let newUrl;
+    newUrl = `/home?page=${nextPage}`;
+    request(newUrl, nextPage)
+  }
+
+  function request(newUrl, nextPage) {
+    history.pushState(null, null, newUrl);
+    fetch(newUrl)
+      .then(response => response.text())
+      .then(data => {
+        document.body.innerHTML = data;
+        let pages = document.querySelectorAll('.news_pagination_item')
+        if (nextPage - 1 < 3) pages[nextPage - 1].classList.add('current');
+        else pages[2].classList.add('current');
+      })
+  }
+  function goToPageNews(id) {
+    const newUrl = `/home/news?id=${id}`;
+    fetch(newUrl, {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).then(response => {
+      return response.json()
+    }).then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.html, 'text/html');
+      const newsDetail = doc.querySelector('.main_content');
+      const currentMainContent = document.querySelector('.main_content')
+      currentMainContent.innerHTML = newsDetail.innerHTML
+      history.pushState(null, null, newUrl);
+    })
+  }
+</script>
 
 </html>
