@@ -16,28 +16,33 @@ class HomeController
 
   public $totalNews;
 
-  public function index(): void
+  public function showHome(): void
   {
     $newsModel = new NewsModel();
-    $totalNews = $newsModel->getCountNews();
-    $queryString = $_SERVER['QUERY_STRING'];
-    $param = explode('=', $queryString);
-    if (count($param) < 2 || !is_numeric($param[1]) || (int) $param[1] < 1 || $param[1] > ceil($totalNews / $param[1]) + 1 || $param[0] != 'page') {
-      require_once 'App/Views/PageNotFound.php';
-      http_response_code(404);
-      return;
-    }
+    // $totalNews = $newsModel->getCountNews();
+    // $queryString = $_SERVER['QUERY_STRING'];
+    // $param = explode('=', $queryString);
+    // if (count($param) < 2 || !is_numeric($param[1]) || (int) $param[1] < 1 || $param[1] > ceil($totalNews / $param[1]) + 1 || $param[0] != 'page') {
+    //   require_once 'App/Views/PageNotFound.php';
+    //   http_response_code(404);
+    //   return;
+    // }
 
-    $this->paginationData();
+    // $this->paginationData();
 
-    $newsList = $newsModel->getAllNews($this->countItemsPage, $this->offset);
+    // $newsList = $newsModel->getAllNews($this->countItemsPage, $this->offset);
     $lastNews = $newsModel->getLastNews();
 
-    foreach ($newsList as &$news) {
-      $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
-    }
-    unset($news);
+    // foreach ($newsList as &$news) {
+    //   $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
+    // }
+    // unset($news);
+    // var_dump('show Home');
     require_once __DIR__ . '/../Views/TemplateView.php';
+  }
+
+  public function showPageNotFount() {
+    var_dump('pageNotFound');
   }
 
   public function redirectToHome()

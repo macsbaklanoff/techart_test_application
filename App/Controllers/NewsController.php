@@ -10,44 +10,55 @@ class NewsController
   public $countItemsPage = 4;
   public $totalNews;
 
-  public function showNews()
+  public function showListNews($page = 1)
   {
-    if (!isset($_GET["id"])) {
-      http_response_code(404);
-      return;
-    }
-    $id = $_GET["id"];
-    $model = new NewsModel();
-    $this->totalNews = $model->getCountNews();
+    var_dump('showListNews');
+    var_dump($page);
+    // if (!isset($_GET["id"])) {
+    //   http_response_code(404);
+    //   return;
+    // }
+    // $id = $_GET["id"];
+    // $model = new NewsModel();
+    // $this->totalNews = $model->getCountNews();
 
-    $queryString = $_SERVER['QUERY_STRING'];
-    $param = explode('=', $queryString);
+    // $queryString = $_SERVER['QUERY_STRING'];
+    // $param = explode('=', $queryString);
 
-    if (!is_numeric($id) || count($param) < 2 || $id > $this->totalNews || $id < 1 || $param[0] != 'id') {
-      require_once 'App/Views/PageNotFound.php';
-      http_response_code(404);
-      return;
-    }
+    // if (!is_numeric($id) || count($param) < 2 || $id > $this->totalNews || $id < 1 || $param[0] != 'id') {
+    //   require_once 'App/Views/PageNotFound.php';
+    //   http_response_code(404);
+    //   return;
+    // }
 
-    $news = $model->getNewsById((int) $id);
+    // $news = $model->getNewsById((int) $id);
 
-    $breadCrumbs = [
-      ['title' => 'Главная', 'url' => '/home?page=1'],
-      ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
-    ];
+    // $breadCrumbs = [
+    //   ['title' => 'Главная', 'url' => '/home?page=1'],
+    //   ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
+    // ];
 
-    $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
+    // $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
 
-    if ($this->isAjaxRequest()) {
-      ob_start();
-      include __DIR__ . '/../Views/NewsView.php';
-      $html = ob_get_clean();
+    // if ($this->isAjaxRequest()) {
+    //   ob_start();
+    //   include __DIR__ . '/../Views/NewsView.php';
+    //   $html = ob_get_clean();
 
-      header('Content-Type: application/json');
-      echo json_encode(['html' => $html]);
-      exit;
-    }
-    require_once __DIR__ . '/../Views/FullNewsDetailView.php';
+    //   header('Content-Type: application/json');
+    //   echo json_encode(['html' => $html]);
+    //   exit;
+    // }
+    // require_once __DIR__ . '/../Views/FullNewsDetailView.php';
+  }
+
+  public function showDetailPage($id) {
+    var_dump('showDetailPage');
+    var_dump($id);
+  }
+
+  public function redirectToFirstPage() {
+    header("Location: /news/page-1/");
   }
 
   private function isAjaxRequest(): bool

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Css/MainContentStyle.css">
+  <link rel="stylesheet" href="/Css/HomeStyle.css">
   <title>Techart.Web</title>
 </head>
 
@@ -16,7 +16,11 @@
       <?= str_replace('<p>', '<p class="main_news_description">', $lastNews['announce']) ?>
     </div>
   </div>
-  <div class="news">
+  <div class="main_content">
+    <h4>Новости</h4>
+    <p>Перейти к новостям</p>
+  </div>
+  <!-- <div class="news">
     <div class="news_header">
       <h4 class="news_header_headline">Новости</h4>
     </div>
@@ -45,10 +49,10 @@
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
-  </div>
+  </div> -->
 
 </body>
-<script>
+<!-- <script>
   function paginationFunc(nextPage) {
     let newUrl;
     newUrl = `/home?page=${nextPage}`;
@@ -81,6 +85,6 @@
       history.pushState(null, null, newUrl);
     })
   }
-</script>
+</script> -->
 
 </html>

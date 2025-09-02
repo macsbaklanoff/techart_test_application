@@ -22,10 +22,11 @@ function autoloader($className)
 
 $application = new Application();
 
-$application->route->add('GET', '/', [HomeController::class, 'redirectToHome']);
-$application->route->add('GET', '/home', [HomeController::class, 'index']);
-$application->route->add('GET', '/home/news', [NewsController::class, 'showNews']);
+$application->route->add('GET', '/', [HomeController::class, 'showHome']);
+$application->route->add('GET', '/news/', [NewsController::class, 'redirectToFirstPage']);
+$application->route->add('GET', '/news/page-{page}', [NewsController::class, 'showNews']);
+$application->route->add('GET', '/news/{id}', [NewsController::class, 'showDetailNews']);
 
-$requestURI = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$requestURI = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $application->route->dispatch($requestURI, $requestMethod);
