@@ -9,16 +9,16 @@
 
 <body>
   <?php
-  include __DIR__ . '/HeaderView.php';
+    include __DIR__ . '/HeaderView.php';
   ?>
   <div class="main_content">
     <?php
-    include __DIR__ . '/HomeView.php';
+      include __DIR__ . '/HomeView.php';
     ?>
   </div>
-  <?php
-  include __DIR__ . '/FooterView.php';
-  ?>
+    <?php
+      include __DIR__ . '/FooterView.php';
+    ?>
 </body>
 
 </html>
