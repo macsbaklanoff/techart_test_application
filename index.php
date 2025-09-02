@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 ini_set('display_errors', 1);
 
@@ -10,7 +10,8 @@ require_once 'Config/ConfigDataBase.php';
 
 spl_autoload_register('autoloader'); //вызывается в результате еще неопределенных классов
 
-function autoloader ($className) {
+function autoloader($className)
+{
     $filename = $className . '.php';
     $filename = str_replace('\\', '/', $filename);
 

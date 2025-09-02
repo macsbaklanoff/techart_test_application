@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/Css/MainContentStyle.css">
   <title>Techart.Web</title>
 </head>
+
 <body>
   <div class="main_news">
-    <img class="main_news_image" src="/uploads/images/<?=htmlspecialchars($lastNews['image'])?>">
+    <img class="main_news_image" src="/uploads/images/<?= htmlspecialchars($lastNews['image']) ?>">
     <div class="main_news_info">
-      <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title'])?></h4>
-      <p class="main_news_description"><?= htmlspecialchars($lastNews["announce"])?></p>
+      <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title']) ?></h4>
+      <p class="main_news_description"><?= htmlspecialchars($lastNews["announce"]) ?></p>
     </div>
   </div>
   <div class="news">
@@ -20,24 +22,26 @@
     </div>
     <div class="news_list-news">
       <?php foreach ($newsList as $news): ?>
-        <div class="news_list-news_item-news" onclick="goToPageNews(<?=$news['id']?>)">
-          <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date'])?></p>
-          <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title'])?></h5>
-          <p class="news_list-news_item-news_announce"><?= htmlspecialchars($news['announce'])?></p>
+        <div class="news_list-news_item-news" onclick="goToPageNews(<?= $news['id'] ?>)">
+          <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
+          <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
+          <p class="news_list-news_item-news_announce"><?= htmlspecialchars($news['announce']) ?></p>
           <button class="news_list-news_item-news_more">
-            Подробнее 
+            Подробнее
             <img class="more-arrow" src="/uploads/icons/arrow-more.png">
-          </button> 
+          </button>
         </div>
-        <?php endforeach; ?>
+      <?php endforeach; ?>
     </div>
     <div class="news_pagination">
       <button class="news_pagination_item" onclick="testFunc(1)">1</button>
       <button class="news_pagination_item" onclick="testFunc(2)">2</button>
       <button class="news_pagination_item" onclick="testFunc(3)">
-        <?=$this->currentPage < 3 ? 3 :htmlspecialchars($this->currentPage)?>
+        <?= $this->currentPage < 3 ? 3 : htmlspecialchars($this->currentPage) ?>
       </button>
-      <button class="<?= ($this->currentPage * $this->countItemsPage) >= $totalNews ? 'none-news' : 'news_pagination_next' ?>"  onclick="testFunc(<?=$this->currentPage + 1?>)">
+      <button
+        class="<?= ($this->currentPage * $this->countItemsPage) >= $totalNews ? 'none-news' : 'news_pagination_next' ?>"
+        onclick="testFunc(<?= $this->currentPage + 1 ?>)">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
     </div>
@@ -54,31 +58,29 @@
   function request(newUrl, nextPage) {
     history.pushState(null, null, newUrl);
     fetch(newUrl)
-        .then(response => response.text())
-        .then(data => {
-            document.body.innerHTML = data;
-            let pages = document.querySelectorAll('.news_pagination_item')
-            if (nextPage - 1 < 3) pages[nextPage - 1].classList.add('current');
-            else pages[2].classList.add('current');
-        })
+      .then(response => response.text())
+      .then(data => {
+        document.body.innerHTML = data;
+        let pages = document.querySelectorAll('.news_pagination_item')
+        if (nextPage - 1 < 3) pages[nextPage - 1].classList.add('current');
+        else pages[2].classList.add('current');
+      })
   }
   function goToPageNews(id) {
-    console.log(id)
     const newUrl = `/home/news?id=${id}`;
     fetch(newUrl, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        }).then(response => {
-            console.log(response)
-            return response.json()
-        }).then(data => {
-            console.log(data);
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data.html, 'text/html');
-            const newsDetail = doc.querySelector('.main_content');
-            const currentMainContent = document.querySelector('.main_content')
-            currentMainContent.innerHTML = newsDetail.innerHTML
-            history.pushState(null, null, newUrl);
-        })
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).then(response => {
+      return response.json()
+    }).then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.html, 'text/html');
+      const newsDetail = doc.querySelector('.main_content');
+      const currentMainContent = document.querySelector('.main_content')
+      currentMainContent.innerHTML = newsDetail.innerHTML
+      history.pushState(null, null, newUrl);
+    })
   }
 </script>
+
 </html>

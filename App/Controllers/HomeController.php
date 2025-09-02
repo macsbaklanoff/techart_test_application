@@ -4,7 +4,8 @@ namespace App\Controllers;
 
 use App\Models\NewsModel;
 
-class HomeController {
+class HomeController
+{
 
   public $newsList;
 
@@ -15,7 +16,8 @@ class HomeController {
 
   public $totalNews;
 
-  public function index(): void {
+  public function index(): void
+  {
     $newsModel = new NewsModel();
     $totalNews = $newsModel->getCountNews();
     $queryString = $_SERVER['QUERY_STRING'];
@@ -29,24 +31,26 @@ class HomeController {
 
     $newsList = $newsModel->getAllNews($this->countItemsPage, $this->offset);
     $lastNews = $newsModel->getLastNews();
-    $lastNews['announce'] = substr($lastNews['announce'],3, -4);
-    $lastNews['content'] = substr($lastNews['content'],3, -4);
+    $lastNews['announce'] = substr($lastNews['announce'], 3, -4);
+    $lastNews['content'] = substr($lastNews['content'], 3, -4);
 
     foreach ($newsList as &$news) {
-      $news['announce'] = substr($news['announce'],3, -4);
-      $news['content'] = substr($news['content'],3, -4);
-      $news['date'] = str_replace('-', '.',explode(' ', $news['date'])[0]);
+      $news['announce'] = substr($news['announce'], 3, -4);
+      $news['content'] = substr($news['content'], 3, -4);
+      $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
     }
-    unset($news); 
+    unset($news);
     require_once __DIR__ . '/../Views/TemplateView.php';
-    }
-  public function redirectToHome() {
+  }
+  public function redirectToHome()
+  {
     header("Location: /home?page={$this->currentPage}");
   }
-  private function paginationData() {
-    $this->currentPage = (int)$_GET["page"];
-    if ($this->currentPage == 1) return;
+  private function paginationData()
+  {
+    $this->currentPage = (int) $_GET["page"];
+    if ($this->currentPage == 1)
+      return;
     $this->offset = $this->currentPage * $this->countItemsPage - $this->countItemsPage;
   }
-
 }
