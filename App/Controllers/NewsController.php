@@ -12,12 +12,20 @@ class NewsController
 
   public function showNews()
   {
+    if (!isset($_GET["id"])) {
+      http_response_code(404);
+      return;
+    }
     $id = $_GET["id"];
     $model = new NewsModel();
     $this->totalNews = $model->getCountNews();
 
-    if ($id > $this->totalNews || !is_numeric($id)) {
+    $queryString = $_SERVER['QUERY_STRING'];
+    $param = explode('=', $queryString);
+
+    if (!is_numeric($id) || count($param) < 2 || $id > $this->totalNews || $id < 1 || $param[0] != 'id') {
       require_once 'App/Views/PageNotFound.php';
+      http_response_code(404);
       return;
     }
 
@@ -27,9 +35,6 @@ class NewsController
       ['title' => 'Главная', 'url' => '/home?page=1'],
       ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
     ];
-    $news['announce'] = substr($news['announce'], 3, -4);
-    preg_match_all('/<p[^>]*>.*?<\/p>/', $news['content'], $matches);
-    $paragraphs = $matches[0];
 
     $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
 

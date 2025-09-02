@@ -30,11 +30,9 @@
       <p class="detail_news_date"><?= htmlspecialchars($news['date']) ?></p>
       <div class="detail_news_info">
         <div class="detail_news_info_text">
-          <h4 class="detail_news_info_text_headline"><?= htmlspecialchars($news['announce']) ?></h4>
+           <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $news['announce']) ?>
           <div class="detail_news_info_text_content">
-            <?php foreach ($paragraphs as $paragraph): ?>
-              <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $paragraph) ?>
-            <?php endforeach; ?>
+            <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $news['content']) ?>
           </div>
         </div>
         <div class="detail_news_info_image">

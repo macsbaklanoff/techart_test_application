@@ -13,7 +13,7 @@
     <img class="main_news_image" src="/uploads/images/<?= htmlspecialchars($lastNews['image']) ?>">
     <div class="main_news_info">
       <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title']) ?></h4>
-      <p class="main_news_description"><?= htmlspecialchars($lastNews["announce"]) ?></p>
+      <?= str_replace('<p>', '<p class="main_news_description">', $lastNews['announce']) ?>
     </div>
   </div>
   <div class="news">
@@ -25,7 +25,7 @@
         <div class="news_list-news_item-news" onclick="goToPageNews(<?= $news['id'] ?>)">
           <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
           <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
-          <p class="news_list-news_item-news_announce"><?= htmlspecialchars($news['announce']) ?></p>
+          <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
           <button class="news_list-news_item-news_more">
             Подробнее
             <img class="more-arrow" src="/uploads/icons/arrow-more.png">

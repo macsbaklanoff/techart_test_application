@@ -22,8 +22,9 @@ class HomeController
     $totalNews = $newsModel->getCountNews();
     $queryString = $_SERVER['QUERY_STRING'];
     $param = explode('=', $queryString);
-    if (!is_numeric($param[1]) || $param[1] > ceil($totalNews / $param[1]) + 1) {
+    if (count($param) < 2 || !is_numeric($param[1]) || (int) $param[1] < 1 || $param[1] > ceil($totalNews / $param[1]) + 1 || $param[0] != 'page') {
       require_once 'App/Views/PageNotFound.php';
+      http_response_code(404);
       return;
     }
 
@@ -31,12 +32,8 @@ class HomeController
 
     $newsList = $newsModel->getAllNews($this->countItemsPage, $this->offset);
     $lastNews = $newsModel->getLastNews();
-    $lastNews['announce'] = substr($lastNews['announce'], 3, -4);
-    $lastNews['content'] = substr($lastNews['content'], 3, -4);
 
     foreach ($newsList as &$news) {
-      $news['announce'] = substr($news['announce'], 3, -4);
-      $news['content'] = substr($news['content'], 3, -4);
       $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
     }
     unset($news);

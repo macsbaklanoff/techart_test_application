@@ -3,6 +3,7 @@
   margin-top: 83px;
   grid-column: 2/-2;
 }
+
 .footer-line {
   display: grid;
   grid-template-columns: subgrid;
@@ -10,6 +11,7 @@
   height: 1px;
   background-color: #6C6E7B;
 }
+
 .footer-info {
   margin: 0;
   padding-block: 63px;
