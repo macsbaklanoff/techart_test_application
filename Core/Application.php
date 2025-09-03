@@ -8,6 +8,7 @@ use Core\Model;
 class Application
 {
   public Route $route;
+  
   public Model $model;
 
   public function __construct()
