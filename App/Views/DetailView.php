@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Css/DetailStyle.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <div class="main_content">
+  <div class="main_content">
     <div class="line_detail_news"></div>
     <div class="bread">
       <?php
@@ -26,7 +29,7 @@
       <p class="detail_news_date"><?= htmlspecialchars($news['date']) ?></p>
       <div class="detail_news_info">
         <div class="detail_news_info_text">
-           <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $news['announce']) ?>
+          <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $news['announce']) ?>
           <div class="detail_news_info_text_content">
             <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $news['content']) ?>
           </div>
@@ -42,4 +45,5 @@
     </div>
   </div>
 </body>
+
 </html>

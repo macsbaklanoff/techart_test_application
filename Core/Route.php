@@ -43,7 +43,7 @@ class Route
         $controller->showDetailPage($matches[1]);
         break;
       default:
-        $controller = new HomeController();
+        $controller = new Controller();
         $controller->showPageNotFount();
         break;
     }
