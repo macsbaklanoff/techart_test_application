@@ -35,6 +35,10 @@ class NewsController extends Controller
 
   public function showDetailPage($id)
   {
+    if ($id < 1) {
+      $this->showPageNotFount();
+      return;
+    }
     $news = $this->newsModel->getNewsById((int) $id);
     $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
     $breadCrumbs = [

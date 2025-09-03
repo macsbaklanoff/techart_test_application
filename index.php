@@ -27,6 +27,6 @@ $application->route->add('GET', '/news/', [NewsController::class, 'redirectToFir
 $application->route->add('GET', '/news/page-{page}', [NewsController::class, 'showNews']);
 $application->route->add('GET', '/news/{id}', [NewsController::class, 'showDetailNews']);
 
-$requestURI = $_SERVER['REQUEST_URI'];
+$requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-$application->route->dispatch($requestURI, $requestMethod);
+$application->route->dispatch($requestUri, $requestMethod);
