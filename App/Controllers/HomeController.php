@@ -18,9 +18,7 @@ class HomeController extends Controller
 
   public function showHome(): void
   {
-    $newsModel = new NewsModel();
-
-    $lastNews = $newsModel->getLastNews();
+    $lastNews = $this->newsModel->getLastNews();
 
     require_once __DIR__ . '/../Views/PageHomeView.php';
   }

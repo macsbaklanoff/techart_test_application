@@ -27,13 +27,12 @@
       <?php endforeach; ?>
     </div>
     <div class="news_pagination">
-      <!-- <button class=<?= $page == 1 ? "news_pagination_item current" : "news_pagination_item" ?> onclick="paginationFunc(1)">1</button> -->
-      <button class="news_pagination_item" onclick="paginationFunc(1)">1</button>
+      <button class=<?= $page == 1 ? "news_pagination_item current" : "news_pagination_item" ?> onclick="paginationFunc(1)">1</button>
       <button class="news_pagination_item" onclick="paginationFunc(2)">2</button>
       <button class="news_pagination_item" onclick="paginationFunc(3)">
         <?= $page < 3 ? 3 : htmlspecialchars($page) ?>
       </button>
-      <button class="<?= ($page * $this->countItemsPage) >= $this->totalNews ? 'none-news' : 'news_pagination_next' ?>"
+      <button class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>"
         onclick="paginationFunc(<?= $page + 1 ?>)">
         <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
       </button>
