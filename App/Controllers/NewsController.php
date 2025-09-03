@@ -35,6 +35,8 @@ class NewsController extends Controller
 
   public function showDetailPage($id)
   {
+    $id = (int)$id;
+
     if ($id < 1) {
       $this->showPageNotFount();
       return;

@@ -13,7 +13,7 @@ class NewsRouter implements IRoute
             return array(
                 'controller' => NewsController::class,
                 'action' => 'redirectToFirstPage',
-                'args' => [0],
+                'args' => [],
             );
         } else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches)) {
             return array(
@@ -21,7 +21,7 @@ class NewsRouter implements IRoute
                 'action' => 'showListNews',
                 'args' => [$matches[1]],
             );
-        } else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches)) {
+        } else if (preg_match('~^/news/(\d+)/$~', $requestUri, $matches)) {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showDetailPage',
