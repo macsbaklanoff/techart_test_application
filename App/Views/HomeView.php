@@ -9,16 +9,16 @@
 </head>
 
 <body>
-  <div class="main_news">
+  <!-- <div class="main_news">
     <img class="main_news_image" src="/uploads/images/<?= htmlspecialchars($lastNews['image']) ?>">
     <div class="main_news_info">
       <h4 class="main_news_title"><?= htmlspecialchars($lastNews['title']) ?></h4>
       <?= str_replace('<p>', '<p class="main_news_description">', $lastNews['announce']) ?>
     </div>
-  </div>
+  </div> -->
   <div class="main_content">
     <h4>Новости</h4>
-    <p>Перейти к новостям</p>
+    <p onclick="goToListNews()">Перейти к новостям</p>
   </div>
   <!-- <div class="news">
     <div class="news_header">
@@ -52,6 +52,12 @@
   </div> -->
 
 </body>
+<script>
+  function goToListNews() {
+    console.log('goToListNews');
+    window.location.href = '/news/';
+  }
+</script>
 <!-- <script>
   function paginationFunc(nextPage) {
     let newUrl;

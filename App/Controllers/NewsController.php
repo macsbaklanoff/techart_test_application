@@ -10,60 +10,46 @@ class NewsController
   public $countItemsPage = 4;
   public $totalNews;
 
-  public function showListNews($page = 1)
+  private $newsModel;
+
+  private $offset;
+
+  public function __construct() {
+    $this->newsModel = new NewsModel();
+  }
+
+  public function showListNews($page)
   {
-    var_dump('showListNews');
-    var_dump($page);
-    // if (!isset($_GET["id"])) {
-    //   http_response_code(404);
-    //   return;
-    // }
-    // $id = $_GET["id"];
-    // $model = new NewsModel();
-    // $this->totalNews = $model->getCountNews();
+    $page = (int)$page;
 
-    // $queryString = $_SERVER['QUERY_STRING'];
-    // $param = explode('=', $queryString);
+    $lastNews = $this->newsModel->getLastNews();
+    $this->totalNews = $this->newsModel->getCountNews();
 
-    // if (!is_numeric($id) || count($param) < 2 || $id > $this->totalNews || $id < 1 || $param[0] != 'id') {
-    //   require_once 'App/Views/PageNotFound.php';
-    //   http_response_code(404);
-    //   return;
-    // }
+    $this->offset = $page * $this->countItemsPage - $this->countItemsPage;
 
-    // $news = $model->getNewsById((int) $id);
-
-    // $breadCrumbs = [
-    //   ['title' => 'Главная', 'url' => '/home?page=1'],
-    //   ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
-    // ];
-
-    // $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
-
-    // if ($this->isAjaxRequest()) {
-    //   ob_start();
-    //   include __DIR__ . '/../Views/NewsView.php';
-    //   $html = ob_get_clean();
-
-    //   header('Content-Type: application/json');
-    //   echo json_encode(['html' => $html]);
-    //   exit;
-    // }
-    // require_once __DIR__ . '/../Views/FullNewsDetailView.php';
+    $newsList = $this->newsModel->getAllNews($this->countItemsPage, $this->offset);
+    
+    foreach ($newsList as &$news) {
+      $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
+    }
+    unset($news);
+    require_once __DIR__ . '/../Views/PageListNews.php';
   }
 
   public function showDetailPage($id) {
-    var_dump('showDetailPage');
-    var_dump($id);
+
+    $news = $this->newsModel->getNewsById((int) $id);
+    $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
+    $breadCrumbs = [
+      ['title' => 'Главная', 'url' => '/home?page=1'],
+      ['title' => $news['title'], 'url' => 'home/news?id=' . (string) $news['id']]
+    ];
+    require_once __DIR__ .'/../Views/PageDetailNews.php';
+    
   }
 
   public function redirectToFirstPage() {
     header("Location: /news/page-1/");
   }
 
-  private function isAjaxRequest(): bool
-  {
-    return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-      strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-  }
 }

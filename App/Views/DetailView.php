@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Css/MainContentStyle.css">
-  <link rel="stylesheet" href="/Css/DetailStyle.css">
-  <title>Techart.Web</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-  <!-- <div class="main_content">
+    <div class="main_content">
     <div class="line_detail_news"></div>
     <div class="bread">
       <?php
@@ -39,12 +35,11 @@
           <img src="/uploads/images/<?= htmlspecialchars($news['image']) ?>">
         </div>
       </div>
-      <button class="detail_news_back_page" onclick="window.location.href = `/home?page=1`">
+      <button class="detail_news_back_page" onclick="window.location.href = `/news/`">
         <img class="arrow_back_page" src="/uploads/icons/arrow-back-page.png">
         назад к новостям
       </button>
     </div>
-  </div> -->
+  </div>
 </body>
-
 </html>
