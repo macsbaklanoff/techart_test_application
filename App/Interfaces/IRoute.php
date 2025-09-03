@@ -2,6 +2,7 @@
 
 namespace App\Interfaces;
 
-interface IRoute {
+interface IRoute
+{
     public function route($requestUri);
 }

@@ -7,14 +7,14 @@ use Core\Model;
 
 class Application
 {
-  public Route $route;
-  
-  public Model $model;
+    public Route $route;
 
-  public function __construct()
-  {
-    $this->route = new Route();
+    public Model $model;
 
-    $this->model = new Model();
-  }
+    public function __construct()
+    {
+        $this->route = new Route();
+
+        $this->model = new Model();
+    }
 }

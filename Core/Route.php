@@ -9,13 +9,10 @@ use App\Routes\NewsRouter;
 
 class Route
 {
-
     public function dispatch($requestUri, $requestMethod): void
     {
 
         $routes = [HomeRouter::class, NewsRouter::class];
-
-        // var_dump($routes);
 
         foreach ($routes as $route) {
             $class = new $route;
@@ -26,24 +23,8 @@ class Route
                 return;
             }
         }
-        // $homeRouter = new HomeRouter();
-        // $newsRouter = new NewsRouter();
+        http_response_code(404);
+        require 'App/Views/PageNotFound.php';
 
-        // $homeResult = $homeRouter->route($requestUri);
-        // $newsResult = $newsRouter->route($requestUri);
-
-        // if ($homeResult) {
-        //     $controller = new $homeResult['controller'];
-        //     call_user_func_array([$controller, $homeResult['action']], $homeResult['args']);
-        //     return;
-        // }
-        // if ($newsResult) {
-        //     $controller = new $newsResult['controller'];
-        //     call_user_func_array([$controller, $newsResult['action']], $newsResult['args']);
-        //     return;
-        // }
-
-        // $controller = new Controller();
-        // $controller->showPageNotFount();
     }
 }

@@ -2,6 +2,10 @@
 
 ini_set('display_errors', 1);
 
+
+//routes
+//регистрация классов
+
 use Core\Application;
 use App\Controllers\HomeController;
 use App\Controllers\NewsController;
