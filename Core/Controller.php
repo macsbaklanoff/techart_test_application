@@ -17,7 +17,6 @@ class Controller
         $this->totalCountNews = $this->newsModel->getCountNews();
     }
 
-
     public function showPageNotFount()
     {
         require_once 'App/Views/PageNotFound.php';

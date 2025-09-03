@@ -25,28 +25,32 @@ class Route
 
   public function dispatch($requestUri, $requestMethod): void
   {
-    switch(true) {
+    switch (true) {
+
       case $requestUri === '/':
         $controller = new HomeController();
         $controller->showHome();
         break;
+
       case $requestUri === '/news/':
         $controller = new NewsController();
-        $controller->redirectToFirstPage();
+        $controller->showListNews(1);
         break;
+
       case preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches):
         $controller = new NewsController();
         $controller->showListNews($matches[1]);
         break;
+
       case preg_match('~^/news/(\d+)/$~', $requestUri, $matches):
         $controller = new NewsController();
         $controller->showDetailPage($matches[1]);
         break;
+        
       default:
         $controller = new Controller();
         $controller->showPageNotFount();
         break;
     }
   }
-
 }
