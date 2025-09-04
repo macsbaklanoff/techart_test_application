@@ -17,8 +17,8 @@ class NewsController extends Controller
 
         $page = (int) $page;
 
-        if ($this->isNotCorrectPage($page)) {
-
+        if ($this->isNotCorrectPage($page))
+        {
             $this->showPageNotFount();
             return;
         }
@@ -40,7 +40,8 @@ class NewsController extends Controller
     {
         $id = (int) $id;
 
-        if ($this->isNotCorrectId($id)) {
+        if ($this->isNotCorrectId($id)) 
+        {
             $this->showPageNotFount();
             return;
         }
