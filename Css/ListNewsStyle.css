@@ -29,6 +29,7 @@
   grid-template-columns: 1fr;
   row-gap: 30px;
   margin: 0;
+  text-decoration: none;
 }
 
 .news_list-news_item-news_date {
@@ -106,13 +107,16 @@
 }
 
 .news_pagination_item {
+  display: flex;
   background-color: #FFF;
   width: 56px;
   height: 54px;
   border: 2px solid #841844;
   color: #841844;
   border-radius: 50px;
-
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   font-family: 'OpenSans-SemiBold';
   font-size: 16px;
   text-transform: uppercase;

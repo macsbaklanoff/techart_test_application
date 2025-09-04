@@ -15,7 +15,7 @@
         </div>
         <div class="news_list-news">
             <?php foreach ($newsList as $news): ?>
-                <div class="news_list-news_item-news" onclick="goToDetailPageNews(<?= $news['id'] ?>)">
+                <a href=<?=$this->getViewUrl($news['id'])?> class="news_list-news_item-news">
                     <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
                     <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
                     <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
@@ -23,11 +23,11 @@
                         Подробнее
                         <img class="more-arrow" src="/uploads/icons/arrow-more.png">
                     </button>
-                </div>
+                </a>
             <?php endforeach; ?>
         </div>
         <div class="news_pagination">
-            <button class=<?= $page == 1 ? "news_pagination_item current" : "news_pagination_item" ?>
+            <!-- <button class=<?= $page == 1 ? "news_pagination_item current" : "news_pagination_item" ?>
                 onclick="paginationFunc(1)">1</button>
             <button class="news_pagination_item" onclick="paginationFunc(2)">2</button>
             <button class="news_pagination_item" onclick="paginationFunc(3)">
@@ -37,21 +37,24 @@
                 class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>"
                 onclick="paginationFunc(<?= $page + 1 ?>)">
                 <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
-            </button>
+            </button> -->
+            <a href=<?= $this->getListUrl(1) ?> class="news_pagination_item">1</a>
+            <a href=<?= $this->getListUrl(2) ?> class="news_pagination_item">2</a>
+            <a href=<?= $this->getListUrl(3) ?> class="news_pagination_item">
+                <?= $page < 3 ? 3 : htmlspecialchars($page) ?>
+            </a>
+            <a href=<?= $this->getListUrl($page + 1) ?>
+                class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
+                <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
+            </a>
         </div>
     </div>
 </body>
 <script>
 
-    function goToDetailPageNews(id) {
-        window.location.href = `/news/${id}/`;
-    }
-
-    function paginationFunc(newPage) {
-        console.log(newPage);
-        window.location.href = `/news/page-${newPage}/`;
-    }
-
+    // function goToDetailPageNews(id) {
+    //     window.location.href = `/news/${id}/`;
+    // }
 </script>
 
 </html>

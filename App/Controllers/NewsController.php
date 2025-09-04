@@ -4,18 +4,17 @@ namespace App\Controllers;
 
 use App\Models\NewsModel;
 use Core\Controller;
+use App\Routes\NewsRouter;
 
 class NewsController extends Controller
 {
-    // public $current = ' current';
-
     private $offset;
 
     public function showListNews($page)
     {
         $page = (int) $page;
 
-        if ($page > ceil($this->totalCountNews / $this->countItemsPage) || $page < 1) {
+        if ($this->isNotCorrectPage($page)) {
             $this->showPageNotFount();
             return;
         }
@@ -37,7 +36,7 @@ class NewsController extends Controller
     {
         $id = (int) $id;
 
-        if ($id < 1) {
+        if ($this->isNotCorrectId($id)) {
             $this->showPageNotFount();
             return;
         }
@@ -51,9 +50,36 @@ class NewsController extends Controller
 
     }
 
-    public function redirectToFirstPage()
+    // public function redirectToFirstPage()
+    // {
+    //     header("Location: /news/page-1/");
+    // }
+
+    public function getListUrl($page)
     {
-        header("Location: /news/page-1/");
+        if ($this->isNotCorrectPage($page)) {
+            $this->showPageNotFount();
+            return;
+        } 
+        $newsRouter = new NewsRouter();
+        return $newsRouter->getListUrl($page);
     }
 
+    public function getViewUrl($id) 
+    {
+        if ($this->isNotCorrectId($id)) {
+            $this->showPageNotFount();
+            return;
+        }
+        $newsRouter = new NewsRouter();
+        return $newsRouter->getViewUrl($id);
+    }
+
+    private function isNotCorrectPage($page) {
+        return $page > ceil($this->totalCountNews / $this->countItemsPage) || $page < 1;
+    }
+
+    private function isNotCorrectId($id) {
+        return $id < 1 || $id > $this->totalCountNews;
+    }
 }

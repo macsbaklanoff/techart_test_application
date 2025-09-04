@@ -10,10 +10,10 @@
 
 <body>
     <header class="header">
-        <div class="header_info" onclick="window.location.href='/news/'">
+        <a class="header_info" href="/news/">
             <img class="header_info_icon" src="/uploads/icons/logo 1.svg">
             <p class="header_info_headline">ГАЛАКТИЧЕСКИЙ </br> ВЕСТНИК</p>
-        </div>
+        </a>
     </header>
 </body>
 

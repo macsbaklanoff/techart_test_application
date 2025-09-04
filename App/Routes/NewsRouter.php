@@ -37,22 +37,14 @@ class NewsRouter implements IRoute
         return false;
     }
 
-    private function listUrl($page = 1)
+    public function getListUrl($page = 1)
     {
-        return array(
-            'controller' => NewsController::class,
-            'action' => 'showListNews',
-            'args' => [$page],
-        );
+        return "/news/page-$page/";
     }
 
-    private function viewUrl($id)
+    public function getViewUrl($id)
     {
-        return array(
-            'controller' => NewsController::class,
-            'action' => 'showDetailPage',
-            'args' => [$id],
-        );
+        return "/news/$id/";
     }
 
 
