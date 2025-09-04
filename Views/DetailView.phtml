@@ -2,8 +2,8 @@
     <div class="line_detail_news"></div>
     <div class="bread">
         <?php
-        $last_key = array_key_last($this->breadCrumbs);
-        foreach ($this->breadCrumbs as $key => $breadCrumb): ?>
+        $last_key = array_key_last($breadCrumbs);
+        foreach ($breadCrumbs as $key => $breadCrumb): ?>
             <?php if ($key !== $last_key): ?>
                 <a href="<?= htmlspecialchars($breadCrumb['url']) ?>" class="bread_item">
                     <?= htmlspecialchars($breadCrumb['title']) ?>
@@ -14,17 +14,17 @@
         <?php endforeach; ?>
     </div>
     <div class="detail_news">
-        <h1 class="detail_news_headline"><?= htmlspecialchars($this->news['title']) ?></h1>
-        <p class="detail_news_date"><?= htmlspecialchars($this->news['date']) ?></p>
+        <h1 class="detail_news_headline"><?= htmlspecialchars($news['title']) ?></h1>
+        <p class="detail_news_date"><?= htmlspecialchars($news['date']) ?></p>
         <div class="detail_news_info">
             <div class="detail_news_info_text">
-                <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $this->news['announce']) ?>
+                <?= str_replace('<p>', '<p class="detail_news_info_text_headline">', $news['announce']) ?>
                 <div class="detail_news_info_text_content">
-                    <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $this->news['content']) ?>
+                    <?= str_replace('<p>', '<p class="detail_news_info_text_content_paragraph">', $news['content']) ?>
                 </div>
             </div>
             <div class="detail_news_info_image">
-                <img src="/uploads/images/<?= htmlspecialchars($this->news['image']) ?>">
+                <img src="/uploads/images/<?= htmlspecialchars($news['image']) ?>">
             </div>
         </div>
         <button class="detail_news_back_page" onclick="window.location.href = `/news/`">

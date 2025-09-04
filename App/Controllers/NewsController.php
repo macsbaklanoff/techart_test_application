@@ -10,67 +10,69 @@ class NewsController extends Controller
 {
     private $offset;
 
-    public $lastNews;
-
-    public $page;
-
-    public $newsList;
-
-    public $id;
-
-    public $news;
-
-    public $breadCrumbs;
-
     public function showListNews($page)
     {
 
-        $this->page = (int) $page;
+        $page = (int) $page;
 
         if ($this->isNotCorrectPage($page)) {
             $this->showPageNotFount();
             return;
         }
 
-        $this->lastNews = $this->newsModel->getLastNews();
+        $lastNews = $this->newsModel->getLastNews();
 
         $this->offset = $page * $this->countItemsPage - $this->countItemsPage;
 
-        $this->newsList = $this->newsModel->getAllNews($this->countItemsPage, $this->offset);
+        $newsList = $this->newsModel->getAllNews($this->countItemsPage, $this->offset);
 
-        foreach ($this->newsList as &$news) {
+        foreach ($newsList as &$news) {
             $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
         }
         unset($news);
 
-        $this->render('/../../Views/ListNews.phtml');
+        $args = [
+            'page' => $page,
+            'lastNews' => $lastNews, 
+            'newsList' => $newsList,
+        ];
+
+        $this->render('/../../Views/ListNews.phtml', $args);
     }
 
     public function showDetailPage($id)
     {
-        $this->id = (int) $id;
+        $id = (int) $id;
 
         if ($this->isNotCorrectId($id)) {
             $this->showPageNotFount();
             return;
         }
 
-        $this->news = $this->newsModel->getNewsById((int) $id);
+        $news = $this->newsModel->getNewsById((int) $id);
 
-        $this->news['date'] = str_replace('-', '.', explode(' ', $this->news['date'])[0]);
+        $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
 
-        $this->breadCrumbs = [
+        $breadCrumbs = [
             ['title' => 'Главная', 'url' => '/news/'],
-            ['title' => $this->news['title'], 'url' => '/news/' . (string) $this->news['id']]
+            ['title' => $news['title'], 'url' => '/news/' . (string) $news['id']]
         ];
 
-        $this->render('/../../Views/DetailView.phtml');
+        $args = [
+            'id' => $id,
+            'news' => $news,
+            'breadCrumbs' => $breadCrumbs,
+        ];
+
+        $this->render('/../../Views/DetailView.phtml', $args);
     }
 
-    private function render($template)
+    private function render($template, $args)
     {
         ob_start();
-        //extract
+        
+        extract($args);
+
         include __DIR__ . $template; //имя шаблона без php
 
         $content = ob_get_clean();
