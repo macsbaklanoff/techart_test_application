@@ -7,46 +7,53 @@ use App\Interfaces\IRoute;
 
 class NewsRouter implements IRoute
 {
-    
+
     public function route($requestUri)
     {
         if ($requestUri === "/news/") {
             return array(
                 'controller' => NewsController::class,
-                'action' => 'redirectToFirstPage',
-                'args' => [],
+                'action' => 'showListNews',
+                'args' => [1],
             );
-        } else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches)) {
+        }
+
+        else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches)) {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showListNews',
                 'args' => [$matches[1]],
             );
-        } else if (preg_match('~^/news/(\d+)/$~', $requestUri, $matches)) {
+        } 
+
+        else if (preg_match('~^/news/(\d+)/$~', $requestUri, $matches)) {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showDetailPage',
                 'args' => [$matches[1]],
             );
         }
+
         return false;
     }
 
-    public function listUrl($page = 1) {
+    private function listUrl($page = 1)
+    {
         return array(
             'controller' => NewsController::class,
             'action' => 'showListNews',
             'args' => [$page],
-        ); 
+        );
     }
 
-    public function viewUrl($id) {
+    private function viewUrl($id)
+    {
         return array(
             'controller' => NewsController::class,
             'action' => 'showDetailPage',
             'args' => [$id],
         );
     }
-    
+
 
 }

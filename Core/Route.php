@@ -4,18 +4,19 @@ namespace Core;
 
 use App\Controllers\NewsController;
 use App\Controllers\HomeController;
-use App\Routes\HomeRouter;
-use App\Routes\NewsRouter;
 
 class Route
 {
+    public $routes = [];
+
+    public function add($class) {
+        array_push($this->routes, $class);
+    }
+    
     public function dispatch($requestUri, $requestMethod): void
     {
-
-        $routes = [HomeRouter::class, NewsRouter::class];
-
-        foreach ($routes as $route) {
-            $class = new $route($requestUri);
+        foreach ($this->routes as $route) {
+            $class = new $route();
             $result = $class->route($requestUri);
             if ($result) {
                 $controller = new $result['controller'];

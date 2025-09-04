@@ -2,11 +2,9 @@
 
 ini_set('display_errors', 1);
 
-
-//routes
-//регистрация классов
-
 use Core\Application;
+use App\Routes\HomeRouter;
+use App\Routes\NewsRouter;
 use App\Controllers\HomeController;
 use App\Controllers\NewsController;
 
@@ -25,6 +23,9 @@ function autoloader($className)
 }
 
 $application = new Application();
+
+$application->route->add(HomeRouter::class);
+$application->route->add(NewsRouter::class);
 
 // $application->route->add('GET', '/', [HomeController::class, 'showHome']);
 // $application->route->add('GET', '/news/', [NewsController::class, 'redirectToFirstPage']);

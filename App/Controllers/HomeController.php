@@ -8,19 +8,19 @@ use Core\Controller;
 class HomeController extends Controller
 {
 
-  public $newsList;
+    public $newsList;
 
-  public $countItemsPage = 4;
+    public $countItemsPage = 4;
 
-  public $offset = 0;
-  
-  public $lastNews;
+    public $offset = 0;
 
-  public function showHome(): void
-  {
-    $lastNews = $this->newsModel->getLastNews();
+    public $lastNews;
 
-    require_once __DIR__ . '/../Views/PageHomeView.php';
-  }
+    public function showHome(): void
+    {
+        $lastNews = $this->newsModel->getLastNews();
+
+        require_once __DIR__ . '/../Views/PageHomeView.php';
+    }
 
 }
