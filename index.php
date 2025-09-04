@@ -24,6 +24,7 @@ function autoloader($className)
 
 $application = new Application();
 
+
 $application->route->add(HomeRouter::class);
 $application->route->add(NewsRouter::class);
 

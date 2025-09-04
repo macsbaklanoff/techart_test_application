@@ -27,34 +27,20 @@
             <?php endforeach; ?>
         </div>
         <div class="news_pagination">
-            <!-- <button class=<?= $page == 1 ? "news_pagination_item current" : "news_pagination_item" ?>
-                onclick="paginationFunc(1)">1</button>
-            <button class="news_pagination_item" onclick="paginationFunc(2)">2</button>
-            <button class="news_pagination_item" onclick="paginationFunc(3)">
-                <?= $page < 3 ? 3 : htmlspecialchars($page) ?>
-            </button>
-            <button
-                class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>"
-                onclick="paginationFunc(<?= $page + 1 ?>)">
-                <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
-            </button> -->
             <a href=<?= $this->getListUrl(1) ?> class="news_pagination_item">1</a>
             <a href=<?= $this->getListUrl(2) ?> class="news_pagination_item">2</a>
             <a href=<?= $this->getListUrl(3) ?> class="news_pagination_item">
                 <?= $page < 3 ? 3 : htmlspecialchars($page) ?>
             </a>
-            <a href=<?= $this->getListUrl($page + 1) ?>
-                class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
+            <a href=<?= $this->getListUrl($page + 1)?>
+                class="<?= ($page * $this->countItemsPage)>= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
                 <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
             </a>
+            <!-- <a <?=$this->getListUrl($page + 1) ? "href=$this->getListUrl($page + 1) class='news_pagination_next'" : "href=' ' class='none-news'"?>>
+                <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
+            </a> -->
         </div>
     </div>
 </body>
-<script>
-
-    // function goToDetailPageNews(id) {
-    //     window.location.href = `/news/${id}/`;
-    // }
-</script>
 
 </html>
