@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\NewsModel;
 use Core\Controller;
 use App\Routes\NewsRouter;
-use Core\Route;
 
 class NewsController extends Controller
 {
