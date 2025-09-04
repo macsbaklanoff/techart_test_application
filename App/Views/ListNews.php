@@ -15,7 +15,7 @@
         </div>
         <div class="news_list-news">
             <?php foreach ($newsList as $news): ?>
-                <a href=<?= $this->getViewUrl($news['id']) ?> class="news_list-news_item-news">
+                <a href=<?= Core\Route::$routes['NewsRouter']->getViewUrl($news['id']) ?> class="news_list-news_item-news">
                     <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
                     <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
                     <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
