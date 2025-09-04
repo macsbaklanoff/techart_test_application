@@ -33,7 +33,15 @@ class NewsController extends Controller
             $news['date'] = str_replace('-', '.', explode(' ', $news['date'])[0]);
         }
         unset($news);
-        require_once __DIR__ . '/../Views/PageListNews.php';
+
+        ob_start();
+
+        include __DIR__ . '/../../Views/BannerView.phtml';
+        include __DIR__ . '/../../Views/ListNews.phtml';
+
+        $content = ob_get_clean();
+
+        require_once __DIR__ . '/../Layout/LayoutView.php';
     }
 
     public function showDetailPage($id)
@@ -55,7 +63,13 @@ class NewsController extends Controller
             ['title' => $news['title'], 'url' => '/news/' . (string) $news['id']]
         ];
 
-        require_once __DIR__ . '/../Views/PageDetailNews.php';
+        ob_start();
+
+        include __DIR__ . '/../../Views/DetailView.phtml';
+
+        $content = ob_get_clean();
+
+        require_once __DIR__ . '/../Layout/LayoutView.php';
 
     }
 

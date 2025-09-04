@@ -1,0 +1,39 @@
+<?php
+
+use Core\Route;
+
+$newsRoutes = Route::$routes['NewsRouter'];
+?>
+
+<div class="news">
+    <div class="news_header">
+        <h4 class="news_header_headline">Новости</h4>
+    </div>
+    <div class="news_list-news">
+        <?php foreach ($newsList as $news): ?>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getViewUrl($news['id']) ?> class="news_list-news_item-news">
+                <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
+                <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
+                <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
+                <button class="news_list-news_item-news_more">
+                    Подробнее
+                    <img class="more-arrow" src="/uploads/icons/arrow-more.png">
+                </button>
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <div class="news_pagination">
+        <a href=<?= $newsRoutes->getListUrl(1) ?>
+            class="<?= $page == 1 ? 'news_pagination_item current' : 'news_pagination_item' ?>">1</a>
+        <a href=<?= $newsRoutes->getListUrl(2) ?>
+            class="<?= $page == 2 ? 'news_pagination_item current' : 'news_pagination_item' ?>">2</a>
+        <a href=<?= $newsRoutes->getListUrl(3) ?>
+            class="<?= $page >= 3 ? 'news_pagination_item current' : 'news_pagination_item' ?>">
+            <?= $page < 3 ? 3 : $page ?>
+        </a>
+        <a href=<?= $newsRoutes->getListUrl($page + 1) ?>
+            class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
+            <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
+        </a>
+    </div>
+</div>
