@@ -8,11 +8,11 @@ class NewsModel extends Model
 {
     public function getAllNews($countItemsPage, $offset): array
     {
-        $data = $this->dbContext->prepare("SELECT * FROM news ORDER BY date DESC LIMIT ? OFFSET ?");
+        $data = $this->dbContext->prepare("SELECT * FROM news ORDER BY date DESC LIMIT :countItemPage OFFSET :offset");
         
-        $data->bindParam(1, $countItemsPage, \PDO::PARAM_INT);
+        $data->bindParam(':countItemPage', $countItemsPage, \PDO::PARAM_INT);
         
-        $data->bindParam(2, $offset, \PDO::PARAM_INT);
+        $data->bindParam(':offset', $offset, \PDO::PARAM_INT);
         
         $data->execute();
         
@@ -22,9 +22,9 @@ class NewsModel extends Model
     public function getNewsById($id)
     {
         
-        $data = $this->dbContext->prepare("SELECT * FROM news WHERE id=?");
+        $data = $this->dbContext->prepare("SELECT * FROM news WHERE id=:id");
         
-        $data->bindParam(1, $id, \PDO::PARAM_INT);
+        $data->bindParam(':id', $id, \PDO::PARAM_INT);
         
         $data->execute();
         

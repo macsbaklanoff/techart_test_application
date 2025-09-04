@@ -6,7 +6,6 @@ use Config;
 
 class Model
 {
-
     protected $dbContext;
 
     public function __construct()

@@ -14,15 +14,11 @@ class HomeController extends Controller
 
     public $offset = 0;
 
-    public $lastNews;
-
     public function showHome(): void
     {
         $lastNews = $this->newsModel->getLastNews();
 
         ob_start();
-
-        include __DIR__ . '/../../Views/BannerView.phtml';
 
         include __DIR__ . '/../../Views/HomeView.phtml';
 

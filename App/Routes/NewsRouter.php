@@ -11,26 +11,19 @@ class NewsRouter implements IRoute
 
     public function route($requestUri)
     {
-        if ($requestUri === "/news/") 
-        {
+        if ($requestUri === "/news/") {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showListNews',
                 'args' => [1],
             );
-        }
-
-        else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches))
-        {
+        } else if (preg_match('~^/news/page-(\d+)/$~', $requestUri, $matches)) {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showListNews',
                 'args' => [$matches[1]],
             );
-        } 
-
-        else if (preg_match('~^/news/(\d+)/$~', $requestUri, $matches)) 
-        {
+        } else if (preg_match('~^/news/(\d+)/$~', $requestUri, $matches)) {
             return array(
                 'controller' => NewsController::class,
                 'action' => 'showDetailPage',
