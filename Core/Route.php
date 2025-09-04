@@ -15,7 +15,7 @@ class Route
         $routes = [HomeRouter::class, NewsRouter::class];
 
         foreach ($routes as $route) {
-            $class = new $route;
+            $class = new $route($requestUri);
             $result = $class->route($requestUri);
             if ($result) {
                 $controller = new $result['controller'];

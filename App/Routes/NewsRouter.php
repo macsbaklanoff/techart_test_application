@@ -7,6 +7,7 @@ use App\Interfaces\IRoute;
 
 class NewsRouter implements IRoute
 {
+    
     public function route($requestUri)
     {
         if ($requestUri === "/news/") {
@@ -30,4 +31,22 @@ class NewsRouter implements IRoute
         }
         return false;
     }
+
+    public function listUrl($page = 1) {
+        return array(
+            'controller' => NewsController::class,
+            'action' => 'showListNews',
+            'args' => [$page],
+        ); 
+    }
+
+    public function viewUrl($id) {
+        return array(
+            'controller' => NewsController::class,
+            'action' => 'showDetailPage',
+            'args' => [$id],
+        );
+    }
+    
+
 }
