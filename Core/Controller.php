@@ -12,14 +12,15 @@ class Controller
 
     protected $newsModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->newsModel = new NewsModel();
         $this->totalCountNews = $this->newsModel->getCountNews();
     }
 
     public function showPageNotFount()
     {
-        require_once 'App/Views/PageNotFound.php';
+        require_once __DIR__ . '/../Views/PageNotFound.phtml';
         http_response_code(404);
     }
 }

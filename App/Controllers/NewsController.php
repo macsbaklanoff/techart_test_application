@@ -37,6 +37,7 @@ class NewsController extends Controller
         ob_start();
 
         include __DIR__ . '/../../Views/BannerView.phtml';
+        
         include __DIR__ . '/../../Views/ListNews.phtml';
 
         $content = ob_get_clean();

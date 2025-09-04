@@ -16,11 +16,11 @@
 
 <body>
     <?php
-    include __DIR__ . '/../../Views/HeaderView.phtml';
+        include __DIR__ . '/../../Views/HeaderView.phtml';
 
-    echo $content;
+        echo $content;
 
-    include __DIR__ . '/../../Views/FooterView.phtml';
+        include __DIR__ . '/../../Views/FooterView.phtml';
     ?>
 </body>
 

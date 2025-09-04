@@ -27,7 +27,7 @@ class Route
             }
         }
         http_response_code(404);
-        require 'App/Views/PageNotFound.php';
+        require_once __DIR__ . '/../Views/PageNotFound.phtml';
 
     }
 }

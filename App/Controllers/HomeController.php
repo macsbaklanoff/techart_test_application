@@ -19,16 +19,16 @@ class HomeController extends Controller
     public function showHome(): void
     {
         $lastNews = $this->newsModel->getLastNews();
-        
+
         ob_start();
 
         include __DIR__ . '/../../Views/BannerView.phtml';
+
         include __DIR__ . '/../../Views/HomeView.phtml';
 
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Layout/LayoutView.php';
-        // require_once __DIR__ . '/../Views/PageHomeView.php';
     }
 
 }
