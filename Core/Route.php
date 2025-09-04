@@ -9,11 +9,12 @@ class Route
 {
     public static $routes = [];
 
-    public function add($nameClass, $class) {
+    public function add($nameClass, $class)
+    {
         $objectClass = new $class();
         self::$routes[$nameClass] = $objectClass;
     }
-    
+
     public function dispatch($requestUri, $requestMethod): void
     {
         foreach (self::$routes as $route) {

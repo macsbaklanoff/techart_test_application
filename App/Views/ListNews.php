@@ -27,10 +27,10 @@
             <?php endforeach; ?>
         </div>
         <div class="news_pagination">
-            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(1) ?> class="news_pagination_item">1</a>
-            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(2) ?> class="news_pagination_item">2</a>
-            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(3) ?> class="news_pagination_item">
-                <?= $page < 3 ? 3 : $page?>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(1) ?> class="<?=$page == 1 ? 'news_pagination_item current' : 'news_pagination_item'?>">1</a>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(2) ?> class="<?=$page == 2 ? 'news_pagination_item current' : 'news_pagination_item'?>">2</a>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(3) ?> class="<?=$page >= 3 ? 'news_pagination_item current' : 'news_pagination_item'?>">
+                <?= $page < 3 ? 3 : $page ?>
             </a>
             <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl($page + 1) ?>
                 class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">

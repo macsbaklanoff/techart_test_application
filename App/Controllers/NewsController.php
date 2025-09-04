@@ -13,8 +13,6 @@ class NewsController extends Controller
 
     public $test = 1;
 
-    
-
     public function showListNews($page)
     {
 
