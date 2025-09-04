@@ -61,19 +61,6 @@ class NewsController extends Controller
 
     }
 
-    public function getViewUrl($id)
-    {
-        if ($this->isNotCorrectId($id)) 
-        {
-            $this->showPageNotFount();
-            return;
-        }
-
-        $newsRouter = new NewsRouter();
-
-        return $newsRouter->getViewUrl($id);
-    }
-
     private function isNotCorrectPage($page)
     {
         return $page > ceil($this->totalCountNews / $this->countItemsPage) || $page < 1;
