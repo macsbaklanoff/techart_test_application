@@ -4,6 +4,7 @@ namespace App\Routes;
 
 use App\Controllers\NewsController;
 use App\Interfaces\IRoute;
+use Core\Controller;
 
 class NewsRouter implements IRoute
 {

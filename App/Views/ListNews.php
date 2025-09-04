@@ -15,7 +15,7 @@
         </div>
         <div class="news_list-news">
             <?php foreach ($newsList as $news): ?>
-                <a href=<?=$this->getViewUrl($news['id'])?> class="news_list-news_item-news">
+                <a href=<?= $this->getViewUrl($news['id']) ?> class="news_list-news_item-news">
                     <p class="news_list-news_item-news_date"><?= htmlspecialchars($news['date']) ?></p>
                     <h5 class="news_list-news_item-news_title"><?= htmlspecialchars($news['title']) ?></h5>
                     <?= str_replace('<p>', '<p class="news_list-news_item-news_announce">', $news['announce']) ?>
@@ -27,18 +27,15 @@
             <?php endforeach; ?>
         </div>
         <div class="news_pagination">
-            <a href=<?= $this->getListUrl(1) ?> class="news_pagination_item">1</a>
-            <a href=<?= $this->getListUrl(2) ?> class="news_pagination_item">2</a>
-            <a href=<?= $this->getListUrl(3) ?> class="news_pagination_item">
-                <?= $page < 3 ? 3 : htmlspecialchars($page) ?>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(1) ?> class="news_pagination_item">1</a>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(2) ?> class="news_pagination_item">2</a>
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl(3) ?> class="news_pagination_item">
+                <?= $page < 3 ? 3 : $page?>
             </a>
-            <a href=<?= $this->getListUrl($page + 1)?>
-                class="<?= ($page * $this->countItemsPage)>= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
+            <a href=<?= Core\Route::$routes['NewsRouter']->getListUrl($page + 1) ?>
+                class="<?= ($page * $this->countItemsPage) >= $this->totalCountNews ? 'none-news' : 'news_pagination_next' ?>">
                 <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
             </a>
-            <!-- <a <?=$this->getListUrl($page + 1) ? "href=$this->getListUrl($page + 1) class='news_pagination_next'" : "href=' ' class='none-news'"?>>
-                <img class="arrow-next-page" src="/uploads/icons/arrow-next-page.png">
-            </a> -->
         </div>
     </div>
 </body>

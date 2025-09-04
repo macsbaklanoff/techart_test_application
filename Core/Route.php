@@ -7,15 +7,16 @@ use App\Controllers\HomeController;
 
 class Route
 {
-    public $routes = [];
+    public static $routes = [];
 
-    public function add($class) {
-        array_push($this->routes, $class);
+    public function add($nameClass, $class) {
+        $objectClass = new $class();
+        self::$routes[$nameClass] = $objectClass;
     }
     
     public function dispatch($requestUri, $requestMethod): void
     {
-        foreach ($this->routes as $route) {
+        foreach (self::$routes as $route) {
             $class = new $route();
             $result = $class->route($requestUri);
             if ($result) {

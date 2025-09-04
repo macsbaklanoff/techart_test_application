@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\NewsModel;
 use Core\Controller;
 use App\Routes\NewsRouter;
+use Core\Route;
 
 class NewsController extends Controller
 {
@@ -12,8 +13,11 @@ class NewsController extends Controller
 
     public $test = 1;
 
+    
+
     public function showListNews($page)
     {
+
         $page = (int) $page;
 
         if ($this->isNotCorrectPage($page)) {
@@ -55,18 +59,6 @@ class NewsController extends Controller
 
         require_once __DIR__ . '/../Views/PageDetailNews.php';
 
-    }
-
-    public function getListUrl($page)
-    {
-        if ($this->isNotCorrectPage($page))
-        {
-            return;
-        }
-
-        $newsRouter = new NewsRouter();
-
-        return $newsRouter->getListUrl($page);
     }
 
     public function getViewUrl($id)
