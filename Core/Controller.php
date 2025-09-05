@@ -2,7 +2,7 @@
 
 namespace Core;
 use App\Models\NewsModel;
-
+use Core\Application;
 
 class Controller
 {
@@ -20,22 +20,19 @@ class Controller
 
     public function showPageNotFount()
     {
-        require_once __DIR__ . '/../Templates/PageNotFound/pageNotFound.phtml';
+        require_once __DIR__ . '/../Templates/pageNotFound.phtml';
         http_response_code(404);
     }
 
-    public function render($template, $args) {
-        {
-
-        $fullPath = '/../Templates/' . $template . '.phtml';
+    public function render($template, $args)
+    {
         extract($args);
 
         ob_start();
-        include __DIR__ . $fullPath;
+        include Application::basePath($template);
         $content = ob_get_clean();
-        
-        require_once __DIR__ . '/../Layout/layoutView.php';
-    }
+
+        require_once Application::basePath('layout');
     }
 
 }

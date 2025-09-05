@@ -20,11 +20,11 @@ class HomeController extends Controller
 
         ob_start();
 
-        include __DIR__ . '/../../Templates/Home/homeView.phtml';
+        include __DIR__ . '/../../Templates/Home/home.phtml';
 
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../../Layout/layoutView.php';
+        require_once __DIR__ . '/../../Templates/layout.php';
     }
 
 }
