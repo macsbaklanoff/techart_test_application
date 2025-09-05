@@ -20,8 +20,7 @@ class NewsModel extends Model
     }
 
     public function getNewsById($id)
-    {
-        
+    {   
         $data = $this->dbContext->prepare("SELECT * FROM news WHERE id=:id");
         
         $data->bindParam(':id', $id, \PDO::PARAM_INT);
@@ -33,7 +32,6 @@ class NewsModel extends Model
 
     public function getLastNews()
     {
-        
         $data = $this->dbContext->query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
         
         return $data->fetch(\PDO::FETCH_ASSOC);
@@ -41,7 +39,6 @@ class NewsModel extends Model
 
     public function getCountNews()
     {
-        
         $data = $this->dbContext->query("SELECT COUNT(*) as count FROM news");
         
         return (int) $data->fetch(\PDO::FETCH_ASSOC)['count'];
