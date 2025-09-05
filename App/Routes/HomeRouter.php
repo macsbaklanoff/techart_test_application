@@ -18,4 +18,8 @@ class HomeRouter implements IRoute
         }
         return false;
     }
+
+    public function getHomeUrl() {
+        return '/';
+    }
 }

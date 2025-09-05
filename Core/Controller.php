@@ -20,21 +20,18 @@ class Controller
 
     public function showPageNotFount()
     {
-        require_once __DIR__ . '/../Views/PageNotFound.phtml';
+        require_once __DIR__ . '/../Templates/PageNotFound/pageNotFound.phtml';
         http_response_code(404);
     }
 
     public function render($template, $args) {
         {
-        $pathToFile = '/../Templates/';
-        $ext = '.phtml';
 
-        $fullPath = $pathToFile . $template . $ext;
-        
+        $fullPath = '/../Templates/' . $template . '.phtml';
         extract($args);
 
         ob_start();
-        include __DIR__ . $fullPath; //имя шаблона без php
+        include __DIR__ . $fullPath;
         $content = ob_get_clean();
         
         require_once __DIR__ . '/../Layout/layoutView.php';

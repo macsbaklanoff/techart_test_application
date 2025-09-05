@@ -3,3 +3,41 @@
   row-gap: 32px;
   place-items: center;
 }
+
+.page_not_found_headline {
+  margin: 0;
+  font-family: 'OpenSans-SemiBold';
+  font-size: 32px;
+  color: #841844;
+}
+
+.page_not_found_back_page {
+  display: flex;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-top: 40px;
+  width: 283px;
+  height: 54px;
+  background-color: #FFF;
+  color: #841844;
+  border: 2px #9B407A solid;
+  text-decoration: none;
+  font-family: 'OpenSans-SemiBold';
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 50px;
+}
+
+.page_not_found_back_page:hover .arrow_back_page {
+  content: url('/uploads/icons/arrow-back-page-hover.png');
+  transition: 250ms;
+}
+
+.page_not_found_back_page:hover {
+  background-color: #841844;
+  color: #FFF;
+  transition: 250ms;
+  cursor: pointer;
+}
