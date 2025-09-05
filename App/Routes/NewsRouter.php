@@ -33,8 +33,11 @@ class NewsRouter implements IRoute
         return false;
     }
 
-    public function getListUrl($page = 1)
+    public function getListUrl($page = -1)
     {
+        if ($page == -1) {
+            return "/news/";
+        }
         return "/news/page-$page/";
     }
 
