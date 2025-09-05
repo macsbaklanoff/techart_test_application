@@ -1,7 +1,7 @@
 <?php
 use Core\Route;
 
-$routesArray = Route::$routes['HomeRouter'];
+$homeRouter = Route::$routes['HomeRouter'];
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $routesArray = Route::$routes['HomeRouter'];
     <div class="page_not_found">
         <h1 class="page_not_found_headline">PAGE NOT FOUND</h1>
         <h1 class="page_not_found_headline">404</h1>
-        <a href=<?= $routesArray->getHomeUrl() ?> class="page_not_found_back_page">
+        <a href=<?= $homeRouter->getHomeUrl() ?> class="page_not_found_back_page">
             <img class="arrow_back_page" src="/uploads/icons/arrow-back-page.png">
             Вернуться на главную
         </a>

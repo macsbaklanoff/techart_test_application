@@ -18,13 +18,11 @@ class HomeController extends Controller
     {
         $lastNews = $this->newsModel->getLastNews();
 
-        ob_start();
-
-        include Application::basePathToTemplate('home/home');
-
-        $content = ob_get_clean();
-
-        require_once Application::basePathToTemplate('layout');
+        $args = [
+            'lastNews' => $lastNews,
+        ];
+        
+        $this->render('home/home', $args);
     }
 
 }
