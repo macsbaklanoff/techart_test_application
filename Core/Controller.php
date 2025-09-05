@@ -23,4 +23,22 @@ class Controller
         require_once __DIR__ . '/../Views/PageNotFound.phtml';
         http_response_code(404);
     }
+
+    public function render($template, $args) {
+        {
+        $pathToFile = '/../Templates/';
+        $ext = '.phtml';
+
+        $fullPath = $pathToFile . $template . $ext;
+        
+        extract($args);
+
+        ob_start();
+        include __DIR__ . $fullPath; //имя шаблона без php
+        $content = ob_get_clean();
+        
+        require_once __DIR__ . '/../Layout/layoutView.php';
+    }
+    }
+
 }

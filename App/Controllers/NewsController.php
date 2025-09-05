@@ -37,7 +37,7 @@ class NewsController extends Controller
             'newsList' => $newsList,
         ];
 
-        $this->render('/../../Views/ListNews.phtml', $args);
+        $this->render('List/listNews', $args);
     }
 
     public function showDetailPage($id)
@@ -64,20 +64,7 @@ class NewsController extends Controller
             'breadCrumbs' => $breadCrumbs,
         ];
 
-        $this->render('/../../Views/DetailView.phtml', $args);
-    }
-
-    private function render($template, $args)
-    {
-        ob_start();
-        
-        extract($args);
-
-        include __DIR__ . $template; //имя шаблона без php
-
-        $content = ob_get_clean();
-        
-        require_once __DIR__ . '/../../Layout/LayoutView.php';
+        $this->render('Detail/detailView', $args);
     }
 
     private function isNotCorrectPage($page)
