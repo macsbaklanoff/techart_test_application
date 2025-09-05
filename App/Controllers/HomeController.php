@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\NewsModel;
 use Core\Controller;
+use Core\Application;
 
 class HomeController extends Controller
 {
@@ -20,11 +21,13 @@ class HomeController extends Controller
 
         ob_start();
 
-        include __DIR__ . '/../../Templates/Home/home.phtml';
+        include Application::basePath('home/home');
+        // include __DIR__ . '/../../Templates/Home/home.phtml';
 
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../../Templates/layout.php';
+        require_once Application::basePath('layout');
+        // require_once __DIR__ . '/../../Templates/layout.php';
     }
 
 }

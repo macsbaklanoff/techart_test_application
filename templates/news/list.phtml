@@ -1,10 +1,12 @@
 <?php
 
 use Core\Route;
+use Core\Application;
 
 $routesArray = Route::$routes['NewsRouter'];
 
-include __DIR__ . '/../Home/banner.phtml';
+include Application::basePath('home/banner');
+// include __DIR__ . '/../Home/banner.phtml';
 
 ?>
 

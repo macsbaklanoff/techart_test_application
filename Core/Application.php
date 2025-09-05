@@ -19,7 +19,7 @@ class Application
     }
 
     public static function basePath($template) {
-        $fullPathToTemplate = $_SERVER['DOCUMENT_ROOT'] . 'Templates/' . $template . '.phtml';
+        $fullPathToTemplate = $_SERVER['DOCUMENT_ROOT'] . 'templates/' . $template . '.phtml';
         return $fullPathToTemplate;
     }
 

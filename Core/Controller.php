@@ -20,7 +20,8 @@ class Controller
 
     public function showPageNotFount()
     {
-        require_once __DIR__ . '/../Templates/pageNotFound.phtml';
+        require_once Application::basePath('pageNotFound');
+        // require_once __DIR__ . '/../Templates/pageNotFound.phtml';
         http_response_code(404);
     }
 

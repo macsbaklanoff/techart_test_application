@@ -37,7 +37,7 @@ class NewsController extends Controller
             'newsList' => $newsList,
         ];
 
-        $this->render('CatalogNews/listNews', $args);
+        $this->render('news/list', $args);
     }
 
     public function showDetailPage($id)
@@ -64,7 +64,7 @@ class NewsController extends Controller
             'breadCrumbs' => $breadCrumbs,
         ];
 
-        $this->render('CatalogNews/detailNews', $args);
+        $this->render('news/detail', $args);
     }
 
     private function isNotCorrectPage($page)
