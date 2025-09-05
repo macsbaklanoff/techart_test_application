@@ -18,9 +18,8 @@ class Application
         $this->model = new Model();
     }
 
-    public static function basePath($template) {
+    public static function basePathToTemplate($template) {
         $fullPathToTemplate = $_SERVER['DOCUMENT_ROOT'] . 'templates/' . $template . '.phtml';
         return $fullPathToTemplate;
     }
-
 }

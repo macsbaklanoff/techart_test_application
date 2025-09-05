@@ -8,7 +8,6 @@ use Core\Controller;
 
 class NewsRouter implements IRoute
 {
-
     public function route($requestUri)
     {
         if ($requestUri === "/news/") {
@@ -43,6 +42,4 @@ class NewsRouter implements IRoute
     {
         return "/news/$id/";
     }
-
-
 }

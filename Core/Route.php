@@ -28,8 +28,7 @@ class Route
         }
         http_response_code(404);
 
-        require_once Application::basePath('pageNotFound');
-        // require_once __DIR__ . '/../Templates/pageNotFound.phtml';
+        require_once Application::basePathToTemplate('pageNotFound');
 
     }
 }

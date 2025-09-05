@@ -1,3 +1,9 @@
+<?php
+    use Core\Route;
+
+    $newsRouter = Route::$routes['NewsRouter'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +23,7 @@
 <body>
 
     <header class="header">
-        <a class="header_info" href="/news/">
+        <a href=<?=$newsRouter->getListUrl()?> class="header_info">
             <img class="header_info_icon" src="/uploads/icons/logo 1.svg">
             <p class="header_info_headline">ГАЛАКТИЧЕСКИЙ </br> ВЕСТНИК</p>
         </a>
