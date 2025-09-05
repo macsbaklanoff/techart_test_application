@@ -101,9 +101,9 @@
 
 .detail_news_back_page {
   display: grid;
+  text-decoration: none;
   grid-template-columns: min-content 1fr;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   margin: 0;
   margin-top: 40px;
   width: 283px;

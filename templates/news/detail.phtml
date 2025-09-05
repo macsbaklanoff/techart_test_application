@@ -1,3 +1,10 @@
+<?php
+use Core\Route;
+
+$newsRouter = Route::$routes['NewsRouter'];
+
+?>
+
 <div class="main_detail_content">
     <div class="line_detail_news"></div>
     <div class="bread">
@@ -27,9 +34,9 @@
                 <img src="/uploads/images/<?= htmlspecialchars($news['image']) ?>">
             </div>
         </div>
-        <button class="detail_news_back_page" onclick="window.location.href = `/news/`">
+        <a href=<?=$newsRouter->getListUrl()?> class="detail_news_back_page">
             <img class="arrow_back_page" src="/uploads/icons/arrow-back-page.png">
             назад к новостям
-        </button>
+        </a>
     </div>
 </div>
